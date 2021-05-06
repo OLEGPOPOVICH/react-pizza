@@ -1,10 +1,11 @@
+import { CommonLoyout } from "./common/Loyout";
+import { PizzaConstructorPage } from "./pages/PizzaConstructorPage/PizzaConstructorPage";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Конструктор пиццы
-      </header>
-    </div>
+    <CommonLoyout>
+      <PizzaConstructorPage />
+    </CommonLoyout>
   );
 }
 
