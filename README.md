@@ -5,6 +5,8 @@
 ### Технологии проекта
 
 - [React](https://ru.reactjs.org/)
+- [Jest](https://jestjs.io/ru/)
+- [Testing Library](https://testing-library.com/)
 
 ### Запуск проекта
 
