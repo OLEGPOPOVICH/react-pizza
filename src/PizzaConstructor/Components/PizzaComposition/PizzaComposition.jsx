@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { useAppStateContext } from "../../../useAppStateContext/useAppStateContext"
 import { renderPizzaComposition } from "../../utils";
-
 
 export const PizzaComposition = () => {
   const {

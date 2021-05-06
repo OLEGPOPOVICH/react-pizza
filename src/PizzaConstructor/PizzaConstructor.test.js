@@ -13,7 +13,7 @@ import { PizzaConstructor } from "./PizzaConstructor";
 
 describe('PizzaConstructor',  () => {
 
-  it('chages ingredients', () => {
+  it('changing ingredients', () => {
     const {container} = render(
       <AppStateProvider>
         <PizzaConstructor />
