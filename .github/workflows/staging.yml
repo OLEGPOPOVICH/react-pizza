@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    
+
     - name: Deploy to netlify
       uses: netlify/actions/cli@master
       env:
