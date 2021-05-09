@@ -1,5 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export const useAppState = () => {
-  return useState({isLoaded: false, pizza: {}, order: {}});
-}
+export const useAppState = () =>
+  useState({ isLoading: false, pizzaData: {}, order: {} });

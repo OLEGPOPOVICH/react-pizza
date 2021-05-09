@@ -1,35 +1,16 @@
-import { useEffect } from 'react';
 import { useAppStateContext } from '../useAppStateContext/useAppStateContext';
-import { PizzaComposition, PizzaForm } from './Components';
-import { fetchIngredients } from './utils';
-import './styles.css';
+import { PizzaForm } from './Components/PizzaForm/PizzaForm';
+import { PizzaSammary } from './Components/PizzaSammary/PizzaSammary';
+import { usePizzaConstructor } from './usePizzaConstructor';
 
 export const PizzaConstructor = () => {
-  const { appState, setAppStatePizza } = useAppStateContext();
-
-  useEffect(() => {
-    try {
-      (async function (){
-        const ingredients = fetchIngredients(0);
-        setAppStatePizza(ingredients.data)
-      }());
-    } catch (error) {
-
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { appState } = useAppStateContext();
+  const { dispatch } = usePizzaConstructor(appState);
 
   return (
     <>
-      {
-        !appState.isLoaded
-        ? <div>Loading ...</div>
-        :
-        <>
-          <PizzaComposition />
-          <PizzaForm />
-        </>
-      }
+      <PizzaSammary {...appState} />
+      <PizzaForm appState={appState} dispatch={dispatch} />
     </>
-  )
-}
+  );
+};

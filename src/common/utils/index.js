@@ -1,3 +1,1 @@
-export {
-  getRandomString
-} from "./strings";
+export { getRandomString } from './strings';
