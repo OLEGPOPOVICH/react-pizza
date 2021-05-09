@@ -1,1 +1,1 @@
-export { CommonLoyout } from "./CommonLoyout/CommonLoyout";
+export { CommonLoyout } from './CommonLoyout/CommonLoyout';

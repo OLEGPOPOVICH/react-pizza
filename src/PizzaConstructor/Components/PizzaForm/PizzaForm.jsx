@@ -1,154 +1,131 @@
-import { RadioGroup, utilsComponent } from "../../../common/Components"
-import { useAppStateContext } from "../../../useAppStateContext/useAppStateContext";
-import { getIngredientsAppStatePizza, renderCheckBox, renderRadioButton } from "../../utils";
+import { CheckBox, RadioButton, RadioGroup } from '../../../common/Components';
+import { usePizzaForm } from './usePizzaForm';
 
-export const PizzaForm = () => {
-  const {
-    appState,
-    setIngredientAppState,
-    getTotalPricePizza
-  } = useAppStateContext();
+export const PizzaForm = ({ appState, dispatch }) => {
+  const { pizzaData, getTotalPricePizza } = usePizzaForm(appState.pizzaData);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    alert(`Ваш заказ на ${getTotalPricePizza(appState.pizza)} руб`)
-  }
+    alert(`Ваш заказ на ${getTotalPricePizza()} руб`);
+  };
 
-  const handlerIngredient = ({component}) => {
-    const {
-      value,
-      name,
-      type,
-      checked
-    } = component;
-    const ingredients = appState.pizza && appState.pizza[name];
-
-    utilsComponent.setChecked({
-      buttons: ingredients,
-      buttonType: type,
-      currentValue: value,
-      currentChecked: checked
+  const handleChangesIngredient = (e) => {
+    dispatch({
+      type: e.target.name,
+      payload: {
+        value: e.target.value,
+        checked: e.target.checked,
+        buttonType: e.target.type,
+      },
     });
+  };
 
-    setIngredientAppState(ingredients, name)
-  }
-
-  const getValueSelectedIngredient = (ingredientType) => {
-    const ingredients = getIngredientsAppStatePizza(appState.pizza, ingredientType);
-    return ingredients
-      ? utilsComponent.getValueSelectedRadioButton({
-          buttons: ingredients
-        })
-      : '';
-  }
-
-  const renderIngredientRadioButtons = (
-    ingredientType
-  ) => {
-    const ingredients = getIngredientsAppStatePizza(appState.pizza, ingredientType);
-
-    if (!(
-      ingredients
-      && Array.isArray(ingredients)
-    )) {
-      return null;
-    }
-
-    return ingredients.map((ingredient) => {
-      return renderRadioButton({
-        button: ingredient
-      });
-    })
-  }
-
-  const renderIngredientsCheckBox = (
-    ingredientType
-  ) => {
-    const ingredients = getIngredientsAppStatePizza(appState.pizza, ingredientType);
-
-    if (!(
-      ingredients
-      && Array.isArray(ingredients)
-    )) {
-      return null;
-    }
-
-    return ingredients.map((ingredient) => {
-      return (
-        <div key={ingredient.value}>
-          {ingredient.value}
-          {
-            renderCheckBox({
-              button: ingredient,
-              buttonName: ingredientType,
-              buttonHandler: handlerIngredient
-            })
-          }
-        </div>
-      )
-    });
+  if (!Object.values(pizzaData).length) {
+    return null;
   }
 
   return (
     <form onSubmit={onSubmit}>
       <RadioGroup
-        value={getValueSelectedIngredient('size')}
         label="Размер"
         name="size"
-        type="line"
-        onChange={handlerIngredient}
+        displayType="line"
+        onChange={handleChangesIngredient}
       >
-        {renderIngredientRadioButtons('size')}
+        {pizzaData.size &&
+          pizzaData.size.map((item) => (
+            <RadioButton
+              key={item.value}
+              value={item.value}
+              checked={item.checked}
+              label={item.label}
+            />
+          ))}
       </RadioGroup>
 
-      <hr/>
+      <hr />
       <RadioGroup
-        value={getValueSelectedIngredient('dough')}
         label="Тесто"
         name="dough"
-        type="line"
-        onChange={handlerIngredient}
+        displayType="line"
+        onChange={handleChangesIngredient}
       >
-        {renderIngredientRadioButtons('dough')}
+        {pizzaData.dough &&
+          pizzaData.dough.map((item) => (
+            <RadioButton
+              key={item.value}
+              value={item.value}
+              checked={item.checked}
+            />
+          ))}
       </RadioGroup>
 
-      <hr/>
+      <hr />
       <RadioGroup
-        value={getValueSelectedIngredient('sauce')}
         label="Выберите соус"
         name="sauce"
-        type="line"
-        onChange={handlerIngredient}
+        displayType="line"
+        onChange={handleChangesIngredient}
       >
-        {renderIngredientRadioButtons('sauce')}
+        {pizzaData.sauce &&
+          pizzaData.sauce.map((item) => (
+            <RadioButton
+              key={item.value}
+              value={item.value}
+              checked={item.checked}
+            />
+          ))}
       </RadioGroup>
 
-      <hr/>
+      <hr />
       <div>
         Добавьте сыр
-        <hr/>
-        {renderIngredientsCheckBox('cheese')}
+        <hr />
+        {pizzaData.cheese &&
+          pizzaData.cheese.map((item) => (
+            <CheckBox
+              key={item.value}
+              value={item.value}
+              name="cheese"
+              checked={item.checked}
+              onChange={handleChangesIngredient}
+            />
+          ))}
       </div>
 
-      <hr/>
       <div>
         Добавьте овощи
-        <hr/>
-        {renderIngredientsCheckBox('vegetables')}
+        <hr />
+        {pizzaData.veg &&
+          pizzaData.veg.map((item) => (
+            <CheckBox
+              key={item.value}
+              value={item.value}
+              name="veg"
+              checked={item.checked}
+              onChange={handleChangesIngredient}
+            />
+          ))}
       </div>
-
-      <hr/>
+      <hr />
       <div>
         Добавьте мясо
-        <hr/>
-        {renderIngredientsCheckBox('meat')}
+        <hr />
+        {pizzaData.meat &&
+          pizzaData.meat.map((item) => (
+            <CheckBox
+              key={item.value}
+              value={item.value}
+              name="meat"
+              checked={item.checked}
+              onChange={handleChangesIngredient}
+            />
+          ))}
       </div>
-
-      <hr/>
-      <button
-        data-testid="btn-order"
-        type="submit"
-      >Заказать за {getTotalPricePizza(appState.pizza)} руб</button>
+      <hr />
+      <button data-testid="btn-order" type="submit">
+        Заказать за {getTotalPricePizza()} руб
+      </button>
     </form>
-  )
-}
+  );
+};

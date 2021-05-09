@@ -1,43 +1,22 @@
-import { Children, cloneElement } from "react";
+import { Children, cloneElement } from 'react';
 import './styles.css';
 
-const renderRadioButton = (
-  radioButtons,
-  valueRadioGroup,
-  nameRadioGroup,
-  onChangeRadioGroup
-) => {
-  return Children.map(radioButtons, (radioButton) => {
-    return cloneElement(radioButton, {
-      name: nameRadioGroup,
-      checked: radioButton.props.value === valueRadioGroup,
-      onChange: onChangeRadioGroup
-    });
-  });
-}
-
 export const RadioGroup = ({
-  value,
   label,
   name,
-  type,
+  displayType,
   onChange,
-  children
-}) => {
-
-  return (
-    <div className="radio-wrapper">
-      <div>{label}</div>
-      <div className={type ? `radio-${type}` : ''}>
-        {
-          renderRadioButton(
-            children,
-            value,
-            name,
-            onChange
-          )
-        }
-      </div>
+  children,
+}) => (
+  <div className="radio-wrapper">
+    <div>{label}</div>
+    <div className={displayType ? `radio-${displayType}` : ''}>
+      {Children.map(children, (radioButton) =>
+        cloneElement(radioButton, {
+          name,
+          onChange,
+        })
+      )}
     </div>
-  )
-}
+  </div>
+);

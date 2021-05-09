@@ -1,1 +1,1 @@
-export { PizzaConstructorPage } from "./PizzaConstructorPage";
+export { PizzaConstructorPage } from './PizzaConstructorPage/PizzaConstructorPage';

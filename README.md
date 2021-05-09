@@ -1,3 +1,8 @@
+# React pizza
+[![](https://github.com/OLEGPOPOVICH/react-pizza/workflows/EditorConfig/badge.svg)]
+(https://github.com/OLEGPOPOVICH/react-pizza/actions?query=workflow%3AEditorConfig)
+[![](https://github.com/OLEGPOPOVICH/react-pizza/workflows/ESLint/badge.svg)]
+(https://github.com/OLEGPOPOVICH/react-pizza/actions?query=workflow%3AESLint)
 ### Описание
 
 === Приложение конструктор пиццы. Приложение дает возможность собрать свою пиццу из доступных ингредиентов.

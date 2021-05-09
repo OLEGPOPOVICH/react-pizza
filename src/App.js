@@ -1,5 +1,5 @@
-import { CommonLoyout } from "./common/Loyout";
-import { PizzaConstructorPage } from "./pages/PizzaConstructorPage/PizzaConstructorPage";
+import { CommonLoyout } from './common/Loyout';
+import { PizzaConstructorPage } from './pages/PizzaConstructorPage/PizzaConstructorPage';
 
 function App() {
   return (

@@ -1,4 +1,3 @@
-export { PizzaComposition } from "./PizzaComposition/PizzaComposition"
-export { PizzaForm } from "./PizzaForm/PizzaForm"
-
+export { PizzaSammary } from './PizzaSammary/PizzaSammary';
+export { PizzaForm } from './PizzaForm/PizzaForm';
 
