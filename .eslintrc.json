@@ -46,7 +46,8 @@
       "no-console": "off",
       "no-alert": "off",
       "no-param-reassign": "off",
-      "no-return-assign": "off"
+      "no-return-assign": "off",
+      "eslint-disable-next-line": true,
   },
   "settings": {
       "import/resolver": {
