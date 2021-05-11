@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export const usePizzaForm = (pizzaData = {}) => {
   const getTotalPricePizza = () => {
     const pizzaDataList = Object.values(pizzaData);

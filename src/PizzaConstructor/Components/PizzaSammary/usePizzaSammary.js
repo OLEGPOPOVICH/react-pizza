@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createElement } from 'react';
 import { getRandomString } from '../../../common/utils/strings';
 

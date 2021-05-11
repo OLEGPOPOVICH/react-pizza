@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { CheckBox, RadioButton, RadioGroup } from '../../../common/Components';
 import { usePizzaForm } from './usePizzaForm';
 

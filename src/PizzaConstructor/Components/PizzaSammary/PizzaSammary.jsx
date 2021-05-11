@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { usePizzaSammary } from './usePizzaSammary';
 
 export const PizzaSammary = (appState = {}) => {

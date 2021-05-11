@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Children, cloneElement } from 'react';
 import './styles.css';
 
