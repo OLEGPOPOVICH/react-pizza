@@ -9,8 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { AppStateProvider } from './useAppStateContext/useAppStateContext';
 
 Sentry.init({
-  dsn:
-    'https://147cea3bf5874c9aac8a40b89791177c@o636970.ingest.sentry.io/5756078',
+  dsn: 'https://147cea3bf5874c9aac8a40b89791177c@o636970.ingest.sentry.io/5756078',
   integrations: [new Integrations.BrowserTracing()],
   release: process.env.REACT_APP_SENTRY_RELEASE,
   autoSessionTracking: true,

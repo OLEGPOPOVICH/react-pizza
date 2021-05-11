@@ -1,19 +1,36 @@
-import { getByTestId, getByText, render } from '@testing-library/react';
+import { getByTestId, getByText, render, waitFor } from '@testing-library/react';
+import { fireEvent, getByDisplayValue, queryByText } from '@testing-library/dom';
+import App from 'App';
 import { AppStateProvider } from '../../../useAppStateContext/useAppStateContext';
-import { PizzaConstructor } from '../../PizzaConstructor';
 
 describe('PizzaSammary', () => {
-  it('renders', () => {
-    const { container } = render(
+  it('renders', async () => {
+    const { container, findByText } = render(
       <AppStateProvider>
-        <PizzaConstructor />
+        <App />
       </AppStateProvider>
     );
 
-    // expect(getByText(container, 'Твоя пицца'));
-    // expect(getByText(container, '30 см на тонком тесте'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Томатный соус'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Моцарелла'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Томаты'));
+    fireEvent.click(await waitFor(
+      () => getByDisplayValue(container, '35'),
+      { container }
+    ));
+    fireEvent.click(getByDisplayValue(container, 'Пышное'));
+    fireEvent.click(getByDisplayValue(container, 'Острый'));
+    fireEvent.click(getByDisplayValue(container, 'Чеддер'));
+    fireEvent.click(getByDisplayValue(container, 'Томаты'));
+    fireEvent.click(getByDisplayValue(container, 'Перец'));
+    fireEvent.click(getByDisplayValue(container, 'Пепперони'));
+
+    expect(getByText(container, '35 см на пышном тесте'));
+    const ingredients = getByTestId(container, 'ingredients');
+    expect(getByText(ingredients, 'Острый соус'));
+    expect(getByText(ingredients, 'Моцарелла'));
+    expect(getByText(ingredients, 'Чеддер'));
+    expect(queryByText(ingredients, 'Томаты')).toBeNull();
+    expect(getByText(ingredients, 'Перец'));
+    expect(getByText(ingredients, 'Пепперони'));
+
+    expect(getByText(getByTestId(container, 'btn-order'), 'Заказать за 358 руб'));
   });
 });
