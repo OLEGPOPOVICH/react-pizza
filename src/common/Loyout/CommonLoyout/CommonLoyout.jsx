@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import './styles.css';
 
 export const CommonLoyout = ({ children }) => (

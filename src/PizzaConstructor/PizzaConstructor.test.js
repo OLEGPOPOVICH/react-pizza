@@ -1,37 +1,41 @@
+/* eslint-disable prettier/prettier */
 import {
-  fireEvent,
-  getByLabelText,
   getByTestId,
   getByText,
-  queryByText,
+  getByDisplayValue,
   render,
-  screen,
 } from '@testing-library/react';
+import App from 'App';
 import { AppStateProvider } from '../useAppStateContext/useAppStateContext';
-import { PizzaConstructor } from './PizzaConstructor';
 
 describe('PizzaConstructor', () => {
-  it('changing ingredients', () => {
-    const { container } = render(
+  it('renders', async () => {
+
+    const { container, findByText } = render(
       <AppStateProvider>
-        <PizzaConstructor />
+        <App />
       </AppStateProvider>
     );
 
-    // fireEvent.click(getByLabelText(container, '35 см'));
-    // fireEvent.click(getByLabelText(container, 'Пышное'));
-    // fireEvent.click(getByLabelText(container, 'Грибной'));
-    // fireEvent.click(screen.getByDisplayValue('Чеддер'));
-    // fireEvent.click(screen.getByDisplayValue('Томаты'));
-    // fireEvent.click(screen.getByDisplayValue('Пепперони'));
+    expect(await findByText('30 см на тонком тесте'));
+    expect(getByText(getByTestId(container, 'ingredients'), 'Томатный соус'));
+    expect(getByText(getByTestId(container, 'ingredients'), 'Моцарелла'));
+    expect(getByText(getByTestId(container, 'ingredients'), 'Томаты'));
 
-    // expect(getByText(container, '30 см на пышном тесте'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Грибной соус'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Моцарелла'));
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Чеддер'));
-    // expect(queryByText(getByTestId(container, 'ingredients'), 'Томаты')).toBeFalsy()
-    // expect(getByText(getByTestId(container, 'ingredients'), 'Пепперони'));
+    expect(getByDisplayValue(container, '30')).toBeChecked();
+    expect(getByDisplayValue(container, '35')).not.toBeChecked();
 
-    // expect(getByText(getByTestId(container, 'btn-order'), 'Заказать за 329 руб'));
+    expect(getByDisplayValue(container, 'Тонкое')).toBeChecked();
+    expect(getByDisplayValue(container, 'Пышное')).not.toBeChecked();
+
+    expect(getByDisplayValue(container, 'Моцарелла')).toBeChecked();
+    expect(getByDisplayValue(container, 'Чеддер')).not.toBeChecked();
+
+    expect(getByDisplayValue(container, 'Томаты')).toBeChecked();
+    expect(getByDisplayValue(container, 'Грибы')).not.toBeChecked();
+
+    expect(getByDisplayValue(container, 'Бекон')).not.toBeChecked();
+
+    expect(getByText(getByTestId(container, 'btn-order'), 'Заказать за 200 руб'));
   });
 });
