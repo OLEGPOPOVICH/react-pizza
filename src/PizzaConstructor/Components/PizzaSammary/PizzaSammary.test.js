@@ -5,7 +5,7 @@ import { AppStateProvider } from '../../../useAppStateContext/useAppStateContext
 
 describe('PizzaSammary', () => {
   it('renders', async () => {
-    const { container, findByText } = render(
+    const { container } = render(
       <AppStateProvider>
         <App />
       </AppStateProvider>
