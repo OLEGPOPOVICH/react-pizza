@@ -10,3 +10,7 @@ export const CheckBox = (props) => {
     </div>
   );
 };
+
+CheckBox.defaultProps = {
+  checked: false,
+};
