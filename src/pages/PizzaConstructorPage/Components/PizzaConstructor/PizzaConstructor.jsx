@@ -1,6 +1,6 @@
-import { useAppStateContext } from '../useAppStateContext/useAppStateContext';
-import { PizzaForm } from './Components/PizzaForm/PizzaForm';
-import { PizzaSammary } from './Components/PizzaSammary/PizzaSammary';
+import { useAppStateContext } from '../../../../useAppStateContext/useAppStateContext';
+import { PizzaForm } from '../PizzaForm/PizzaForm';
+import { PizzaSammary } from '../PizzaSammary/PizzaSammary';
 import { usePizzaConstructor } from './usePizzaConstructor';
 
 export const PizzaConstructor = () => {

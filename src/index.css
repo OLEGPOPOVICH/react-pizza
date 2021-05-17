@@ -34,6 +34,19 @@ h1 {
   padding: 16px;
 }
 
+.margin-bottom-8 {
+  margin-bottom: 8px;
+}
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}
+
+.txt-center {
+  text-align: center;
+}
+.txt-right {
+  text-align: right;
+}
 
 .txt-primary {
   color: #00A896;

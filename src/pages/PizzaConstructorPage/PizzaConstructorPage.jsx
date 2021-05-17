@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { PizzaConstructor } from '../../PizzaConstructor/PizzaConstructor';
+import { PizzaConstructor } from './Components/PizzaConstructor/PizzaConstructor';
 import { dataServices } from '../../servecis/dataServices';
 import { useAppStateContext } from '../../useAppStateContext/useAppStateContext';
 import './styles.css';

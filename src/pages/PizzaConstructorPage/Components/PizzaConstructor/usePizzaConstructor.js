@@ -17,10 +17,13 @@ const reducer = (appState = {}, action) => {
   if (pizzaData[action.type]) {
     return {
       ...appState,
-      [pizzaData[action.type]]: getNewArray({
-        list: [...pizzaData[action.type]],
-        currentItem: action.payload,
-      }),
+      pizzaData: {
+        ...pizzaData,
+        [action.type]: getNewArray({
+          list: [...pizzaData[action.type]],
+          currentItem: action.payload,
+        }),
+      },
     };
   }
 

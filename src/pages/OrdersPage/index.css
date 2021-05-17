@@ -1,0 +1,9 @@
+.wrapper__orders {
+  background-color: #F9F9FB;
+  padding: 32px 0px;
+}
+.orders {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+}

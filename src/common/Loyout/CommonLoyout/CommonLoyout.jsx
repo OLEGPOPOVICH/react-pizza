@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 export const CommonLoyout = ({ children }) => (
@@ -69,6 +70,13 @@ export const CommonLoyout = ({ children }) => (
             </div>
           </div>
         </div>
+        <nav>
+          <Link to="/">Пицца</Link>
+          <Link to="/auth">Авторизация</Link>
+          <Link to="/order">Оформление заказа</Link>
+          <Link to="/orders">Заказы</Link>
+          <Link to="/check">Чек</Link>
+        </nav>
         <div className="header__menu">
           <div className="icon__account">
             <svg
