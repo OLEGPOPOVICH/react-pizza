@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { createElement } from 'react';
-import { getRandomString } from '../../../common/utils/strings';
+import { getRandomString } from '../../../../common/utils/strings';
 
 export const usePizzaSammary = (pizzaData = {}) => {
   const { size, dough, sauce, ...ingredients } = pizzaData;

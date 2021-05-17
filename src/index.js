@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AppStateProvider } from './useAppStateContext/useAppStateContext';
@@ -20,7 +21,9 @@ Sentry.init({
 ReactDOM.render(
   <React.StrictMode>
     <AppStateProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AppStateProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -6,14 +6,15 @@ import {
   render,
 } from '@testing-library/react';
 import App from 'App';
-import { AppStateProvider } from '../useAppStateContext/useAppStateContext';
+import { PizzaConstructorPage } from 'pages/PizzaConstructorPage/PizzaConstructorPage';
+import { AppStateProvider } from '../../../../useAppStateContext/useAppStateContext';
 
 describe('PizzaConstructor', () => {
   it('renders', async () => {
 
     const { container, findByText } = render(
       <AppStateProvider>
-        <App />
+        <PizzaConstructorPage />
       </AppStateProvider>
     );
 
