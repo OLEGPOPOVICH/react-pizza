@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { CheckBox, RadioButton, RadioGroup, Button } from 'Common/Components';
+import { CheckBox, RadioButton, RadioGroup, Button } from 'Common/Components/index';
 import { useAppStateContext } from 'useAppStateContext';
 
 export const PizzaForm = ({

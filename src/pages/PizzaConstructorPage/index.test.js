@@ -5,7 +5,7 @@ import {
   getByDisplayValue,
   render,
 } from '@testing-library/react';
-import { PizzaConstructorPage } from 'Pages';
+import { PizzaConstructorPage } from 'Pages/index';
 import { AppStateProvider } from 'useAppStateContext';
 
 describe('PizzaConstructorPage', () => {

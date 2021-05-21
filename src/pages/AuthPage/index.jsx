@@ -2,7 +2,7 @@
 import {
   Button,
   Input
-} from 'Common/Components';
+} from 'Common/Components/index';
 
 import { Link } from 'react-router-dom';
 import './index.css'

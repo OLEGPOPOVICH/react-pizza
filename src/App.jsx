@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Route, Switch } from 'react-router-dom';
-import { AppLayout } from 'Common/Layouts';
+import { AppLayout } from 'Common/Layouts/index';
 import {
   RegistrationPage,
   OrderPage,
@@ -9,7 +9,7 @@ import {
   PizzaConstructorPage,
   NotFoundPage,
   AuthPage
-} from 'Pages';
+} from 'Pages/index';
 
 export const App = () => (
   <AppLayout>
