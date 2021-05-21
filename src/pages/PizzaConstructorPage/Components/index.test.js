@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { getByTestId, getByText, render, waitFor } from '@testing-library/react';
 import { fireEvent, getByDisplayValue, queryByText } from '@testing-library/dom';
-import { PizzaConstructorPage } from 'pages/PizzaConstructorPage/PizzaConstructorPage';
-import { AppStateProvider } from '../../../../useAppStateContext/useAppStateContext';
+import { PizzaConstructorPage } from 'Pages';
+import { AppStateProvider } from 'useAppStateContext';
 
 describe('PizzaSammary', () => {
   it('renders', async () => {

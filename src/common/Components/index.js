@@ -1,5 +1,5 @@
-export { RadioGroup } from './RadioGroup/RadioGroup';
-export { RadioButton } from './RadioGroup/RadioButton/RadioButton';
-export { CheckBox } from './CheckBox/CheckBox';
+export { RadioGroup } from './RadioGroup';
+export { RadioButton } from './RadioButton';
+export { CheckBox } from './CheckBox';
 export { Input } from './Input';
 export { Button } from './Button';

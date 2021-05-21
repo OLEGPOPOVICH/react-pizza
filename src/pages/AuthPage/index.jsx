@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Button } from 'common/Components/Button/index';
-import { Input } from 'common/Components/Input/index';
+import {
+  Button,
+  Input
+} from 'Common/Components';
+
 import { Link } from 'react-router-dom';
 import './index.css'
 
@@ -9,9 +12,7 @@ export const AuthPage = () => {
     e.preventDefault();
   };
 
-  const handleChange = (e) => {
-    console.log(e);
-  };
+  const handleChange = (e) => {};
 
   return (
     <div className="wrapper__auth">

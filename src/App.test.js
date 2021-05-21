@@ -1,31 +1,43 @@
+/* eslint-disable prettier/prettier */
 import { Router } from 'react-router-dom';
 import { render, fireEvent, getByText } from '@testing-library/react';
-import App from 'App';
-import { AppStateProvider } from 'useAppStateContext/useAppStateContext';
-import { createMemoryHistory } from '../node_modules/history';
+import { App } from 'App';
+import { AppStateProvider } from 'useAppStateContext';
+import { createMemoryHistory } from 'history';
+
+const renderWithRouter = (
+  component,
+  {
+    route = "/",
+    history = createMemoryHistory({initialEntries: [route]})
+  } = {}
+) => {
+  const Wrapper = ({ children }) => (
+    <Router history={history}>{ children }</Router>
+  );
+
+  return {
+    ...render(component, { wrapper: Wrapper }),
+    history
+  };
+}
 
 describe('App', () => {
   it('render the constructor page', async () => {
-    const history = createMemoryHistory();
-    const { findByText } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { findByText } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     expect(await findByText('Собери свою пиццу'));
   });
 
   it('click on the auth link', () => {
-    const history = createMemoryHistory();
-    const { getByRole } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Авторизация'));
@@ -35,13 +47,10 @@ describe('App', () => {
   });
 
   it('click on the registration link from the auth page', () => {
-    const history = createMemoryHistory();
-    const { getByRole, container } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole, container } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Авторизация'));
@@ -52,13 +61,10 @@ describe('App', () => {
   });
 
   it('click on the auth link from the registration page', () => {
-    const history = createMemoryHistory();
-    const { getByRole, container } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole, container } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Авторизация'));
@@ -70,13 +76,10 @@ describe('App', () => {
   });
 
   it('click on the order link', () => {
-    const history = createMemoryHistory();
-    const { getByRole } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Оформление заказа'));
@@ -85,13 +88,10 @@ describe('App', () => {
   });
 
   it('click on the orders link', () => {
-    const history = createMemoryHistory();
-    const { getByRole } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Заказы'));
@@ -100,13 +100,10 @@ describe('App', () => {
   });
 
   it('click on the check link', () => {
-    const history = createMemoryHistory();
-    const { getByRole } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     );
 
     fireEvent.click(getByText(getByRole('navigation'), 'Чек'));
@@ -115,15 +112,11 @@ describe('App', () => {
   });
 
   it('go to 404 page', () => {
-    const history = createMemoryHistory();
-    history.push('/404-page');
-
-    const { getByRole } = render(
-      <Router history={history}>
-        <AppStateProvider>
-          <App />
-        </AppStateProvider>
-      </Router>
+    const { getByRole } = renderWithRouter(
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>,
+      { route: '/404-page' }
     );
 
     expect(getByRole('heading').innerHTML).toMatch('404 Not Found Page');

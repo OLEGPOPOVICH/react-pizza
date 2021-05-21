@@ -1,24 +1,47 @@
 /* eslint-disable prettier/prettier */
-import { CheckBox, RadioButton, RadioGroup } from '../../../../common/Components';
-import { usePizzaForm } from './usePizzaForm';
+import { CheckBox, RadioButton, RadioGroup, Button } from 'Common/Components';
+import { useHistory } from 'react-router-dom';
+import { UPDATE_TOPPINGS, CREATE_NEW_ORDER } from 'reducer';
+import { useAppStateContext } from 'useAppStateContext';
+import { getDoughPizza, getIngredientsPizza, getSaucePizza, getSizePizza, getTotalPrice } from 'utils';
 
-export const PizzaForm = ({ appState, dispatch }) => {
-  const { pizzaData, getTotalPricePizza } = usePizzaForm(appState.pizzaData);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    alert(`Ваш заказ на ${getTotalPricePizza()} руб`);
-  };
+export const PizzaForm = () => {
+  const { state, pizzaData, dispatch } = useAppStateContext();
+  const history = useHistory();
+  const totalPrice = getTotalPrice(state.pizzaData);
 
   const handleChangesIngredient = (e) => {
     dispatch({
-      type: e.target.name,
+      type: UPDATE_TOPPINGS,
       payload: {
         value: e.target.value,
         checked: e.target.checked,
         buttonType: e.target.type,
+        name: e.target.name,
       },
     });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { size, dough, sauce, ...ingredients } = pizzaData;
+    const numberOrder = state.orders.length;
+
+    dispatch({
+      type: CREATE_NEW_ORDER,
+      payload: {
+        number: numberOrder + 1,
+        date: new Date(),
+        size: getSizePizza(size),
+        dough: getDoughPizza(dough),
+        sauce: getSaucePizza(sauce),
+        price: totalPrice,
+        ingredients: getIngredientsPizza(ingredients),
+        statsu: 1,
+      },
+    });
+
+    history.push('/order');
   };
 
   if (!Object.values(pizzaData).length) {
@@ -123,10 +146,13 @@ export const PizzaForm = ({ appState, dispatch }) => {
             />
           ))}
       </div>
-      <hr />
-      <button data-testid="btn-order" type="submit">
-        Заказать за {getTotalPricePizza()} руб
-      </button>
+
+      <Button
+        title={`Заказать за ${totalPrice} руб`}
+        data-testid="btn-order"
+        type="submit"
+        typeClass="primary"
+      />
     </form>
   );
 };

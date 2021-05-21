@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-export const CommonLoyout = ({ children }) => (
+export const AppLayout = ({ children }) => (
   <>
     <header className="header">
       <div className="container padding-8">

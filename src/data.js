@@ -1,4 +1,4 @@
-export const DBPizzaData = {
+export const data = {
   size: [
     { value: '30', label: '30 см', price: 56, checked: true },
     { value: '35', label: '35 см', price: 106, checked: false },

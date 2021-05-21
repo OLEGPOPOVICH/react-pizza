@@ -7,14 +7,14 @@ export const Button = ({
   typeClass,
   title,
   disabled,
-  onClick
+  ...other
 }) => (
   <div className="wrapper__button">
     <button
       className={disabled ? 'button-disabled' : `button-${typeClass}`}
       type={type || 'button'}
-      onClick={onClick}
       disabled={disabled}
+      {...other}
     >{title}</button>
   </div>
 )

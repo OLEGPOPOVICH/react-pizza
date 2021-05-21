@@ -1,18 +1,23 @@
 import { useEffect } from 'react';
-import { PizzaConstructor } from './Components/PizzaConstructor/PizzaConstructor';
-import { dataServices } from '../../servecis/dataServices';
-import { useAppStateContext } from '../../useAppStateContext/useAppStateContext';
+import { useAppStateContext } from 'useAppStateContext';
+import { getData } from 'dataServices';
+import { SET_PIZZA_DATA } from 'reducer';
+import { PizzaForm, PizzaSummary } from './Components';
 import './styles.css';
 
 export const PizzaConstructorPage = () => {
-  const { isLoading, setPizzaData } = useAppStateContext();
+  const { isLoading, state, dispatch } = useAppStateContext();
 
   useEffect(() => {
     async function fetchData() {
-      const pizzaData = await dataServices.getPizzaData({
+      const pizzaData = await getData({
         timeout: 1000,
       });
-      setPizzaData(pizzaData);
+
+      dispatch({
+        type: SET_PIZZA_DATA,
+        payload: pizzaData,
+      });
     }
     fetchData();
   }, []);
@@ -27,7 +32,8 @@ export const PizzaConstructorPage = () => {
         <h1>Собери свою пиццу</h1>
       </div>
       <div className="content__pizza padding-16">
-        <PizzaConstructor />
+        <PizzaSummary />
+        <PizzaForm />
       </div>
     </div>
   );

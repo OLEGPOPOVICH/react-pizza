@@ -3,9 +3,8 @@
     "baseUrl": "src",
     "module": "esnext",
     "paths": {
-      "*": [
-        "src/*"
-      ]
+      "Common/*": ["Common/*"],
+      "Pages/*": ["Pages/*"]
     }
   },
   "exclude": ["node_modules", "build", "dist", ".guthub"]

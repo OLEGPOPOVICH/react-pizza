@@ -5,11 +5,10 @@ import {
   getByDisplayValue,
   render,
 } from '@testing-library/react';
-import App from 'App';
-import { PizzaConstructorPage } from 'pages/PizzaConstructorPage/PizzaConstructorPage';
-import { AppStateProvider } from '../../../../useAppStateContext/useAppStateContext';
+import { PizzaConstructorPage } from 'Pages';
+import { AppStateProvider } from 'useAppStateContext';
 
-describe('PizzaConstructor', () => {
+describe('PizzaConstructorPage', () => {
   it('renders', async () => {
 
     const { container, findByText } = render(
