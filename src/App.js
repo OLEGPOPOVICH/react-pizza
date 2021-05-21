@@ -9,7 +9,7 @@ import {
   PizzaConstructorPage,
   NotFoundPage,
   AuthPage
-} from 'Pages/index';
+} from 'Pages';
 
 export const App = () => (
   <AppLayout>
