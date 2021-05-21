@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Router } from 'react-router-dom';
 import { render, fireEvent, getByText } from '@testing-library/react';
-import { App } from 'App';
 import { AppStateProvider } from 'useAppStateContext';
 import { createMemoryHistory } from 'history';
+import { App } from './App';
 
 const renderWithRouter = (
   component,
