@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { useEffect } from 'react';
-import { useAppStateContext } from 'useAppStateContext';
 import { useHistory } from 'react-router-dom';
-import { getData } from 'dataServices';
+import { getData } from '../../dataServices';
+import { useAppStateContext } from '../../useAppStateContext';
 import { PizzaForm, PizzaSummary } from './Components/index';
 import './styles.css';
 

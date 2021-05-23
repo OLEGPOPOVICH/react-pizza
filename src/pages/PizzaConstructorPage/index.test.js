@@ -5,8 +5,8 @@ import {
   getByDisplayValue,
   render,
 } from '@testing-library/react';
-import { AppStateProvider } from 'useAppStateContext';
-import { PizzaConstructorPage } from './index';
+import { AppStateProvider } from '../../useAppStateContext';
+import { PizzaConstructorPage } from '.';
 
 describe('PizzaConstructorPage', () => {
   it('renders', async () => {

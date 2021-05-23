@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Link } from 'react-router-dom';
-import { Button } from 'common/components/Button/index';
-import { Input } from 'common/components/Input/index';
+import { Button } from '../../common/components/Button/index';
+import { Input } from '../../common/components/Input/index';
 import './index.css';
 
 export const RegistrationPage = () => {

@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Logo } from 'common/components/Logo/index';
-import { Menu } from 'common/components/Menu/index';
-import { menuData } from 'data';
-import { Link } from 'react-router-dom';
+import { Logo } from '../../common/components/Logo/index';
+import { Menu } from '../../common/components/Menu/index';
+import { menuData } from '../../data';
 import './styles.css';
 
 export const AppLayout = ({ children }) => (
