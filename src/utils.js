@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { createElement } from 'react';
-import { getRandomString } from 'common/utils/index';
+import { getRandomString } from 'common/utils';
 import { DOUGH } from './constants';
 
 /**

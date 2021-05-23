@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Logo } from '../../common/components/Logo/index';
-import { Menu } from '../../common/components/Menu/index';
+import { Logo } from '../../common/components/Logo';
+import { Menu } from '../../common/components/Menu';
 import { menuData } from '../../data';
 import './styles.css';
 

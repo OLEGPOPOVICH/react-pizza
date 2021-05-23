@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getData } from '../../dataServices';
 import { useAppStateContext } from '../../useAppStateContext';
-import { PizzaForm, PizzaSummary } from './Components/index';
+import { PizzaForm, PizzaSummary } from './Components';
 import './styles.css';
 
 export const PizzaConstructorPage = () => {

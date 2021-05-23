@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Button } from '../../../../common/components/Button/index';
-import { CheckBox } from '../../../../common/components/CheckBox/index';
-import { RadioButton } from '../../../../common/components/RadioButton/index';
-import { RadioGroup } from '../../../../common/components/RadioGroup/index';
+import { Button } from '../../../../common/components/Button';
+import { CheckBox } from '../../../../common/components/CheckBox';
+import { RadioButton } from '../../../../common/components/RadioButton';
+import { RadioGroup } from '../../../../common/components/RadioGroup';
 import { useAppStateContext } from '../../../../useAppStateContext';
 
 export const PizzaForm = ({

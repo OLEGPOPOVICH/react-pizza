@@ -1,4 +1,4 @@
-import { Order } from './Components/index';
+import { Order } from './Components';
 import './index.css';
 
 export const OrderPage = () => (

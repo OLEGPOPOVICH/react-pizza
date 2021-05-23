@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Route, Switch } from 'react-router-dom';
-import { AppLayout } from './layouts/AppLayout/index';
-import { AuthPage } from './pages/AuthPage/index';
-import { RegistrationPage } from './pages/RegistrationPage/index';
-import { OrderPage } from './pages/OrderPage/index';
-import { OrdersPage } from './pages/OrdersPage/index';
-import { CheckPage } from './pages/CheckPage/index';
-import { PizzaConstructorPage } from './pages/PizzaConstructorPage/index';
-import { NotFoundPage } from './pages/NotFoundPage/index';
+import { AppLayout } from './layouts/AppLayout';
+import { AuthPage } from './pages/AuthPage';
+import { RegistrationPage } from './pages/RegistrationPage';
+import { OrderPage } from './pages/OrderPage';
+import { OrdersPage } from './pages/OrdersPage';
+import { CheckPage } from './pages/CheckPage';
+import { PizzaConstructorPage } from './pages/PizzaConstructorPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App = () => (
   <AppLayout>

@@ -1,6 +1,6 @@
 import { fireEvent, getByDisplayValue } from '@testing-library/dom';
 import { render, screen } from '@testing-library/react';
-import { CheckBox } from './index';
+import { CheckBox } from '.';
 
 describe('CheckBox component', () => {
   describe('renders', () => {

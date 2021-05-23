@@ -1,4 +1,4 @@
-import { getRandomString } from 'common/utils/string/index';
+import { getRandomString } from 'common/utils/string';
 import { Link } from 'react-router-dom';
 
 /* eslint-disable prettier/prettier */
