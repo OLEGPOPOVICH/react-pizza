@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
-import { RadioGroup } from '.';
-import { RadioButton } from '../RadioButton';
+import { RadioButton } from '../RadioButton/RadioButton';
+import { RadioGroup } from './RadioGroup';
 
 describe('RadioGroup component', () => {
   describe('renders', () => {
