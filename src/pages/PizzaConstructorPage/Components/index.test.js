@@ -2,7 +2,7 @@
 import { getByTestId, getByText, render, waitFor } from '@testing-library/react';
 import { fireEvent, getByDisplayValue, queryByText } from '@testing-library/dom';
 import { AppStateProvider } from 'useAppStateContext';
-import { PizzaConstructorPage } from 'Pages/';
+import { PizzaConstructorPage } from '../index';
 
 describe('PizzaSammary', () => {
   it('renders', async () => {

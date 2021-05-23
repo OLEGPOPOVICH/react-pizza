@@ -32,3 +32,11 @@ export const data = {
     { value: 'Ветчина', label: '29 ₽', price: 29, checked: false },
   ],
 };
+
+export const menuData = [
+  { link: '/', title: 'Пицца' },
+  { link: '/auth', title: 'Авторизация' },
+  { link: '/order', title: 'Оформление заказа' },
+  { link: '/orders', title: 'Заказы' },
+  { link: 'check', title: 'Чек' },
+];

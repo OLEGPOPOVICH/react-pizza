@@ -2,10 +2,8 @@
   "compilerOptions": {
     "baseUrl": "src",
     "module": "esnext",
-    "paths": {
-      "Common/*": ["src/Common/*"],
-      "Pages/*": ["src/Pages/*"]
-    }
+    "paths": {}
   },
-  "exclude": ["node_modules", "build", "dist", ".guthub"]
+  "include": ["src"],
+  "exclude": ["node_modules", "build", ".guthub"]
 }

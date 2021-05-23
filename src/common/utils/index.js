@@ -1,1 +1,1 @@
-export { getRandomString } from './Strings';
+export { getRandomString } from './string';
