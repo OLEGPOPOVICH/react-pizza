@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Button } from 'common/Components/Button/Button';
-import { Input } from 'common/Components/Input/Input';
+import { Button } from 'common/components/Button';
+import { Input } from 'common/components/Input';
 import { Link } from 'react-router-dom';
 import './index.css';
 

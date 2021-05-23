@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Route, Switch } from 'react-router-dom';
-import { AppLayout } from 'layouts/AppLayout/AppLayout';
+import { AppLayout } from './layouts/AppLayout';
 import { AuthPage } from './pages/AuthPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { OrderPage } from './pages/OrderPage';
