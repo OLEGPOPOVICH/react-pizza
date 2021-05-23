@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { useAppStateContext } from 'useAppStateContext';
+import { useAppStateContext } from '../../../../useAppStateContext';
 import {
   getSizePizza,
   getDoughPizza,
   getSaucePizza,
   getIngredientsPizza
-} from 'utils';
+} from '../../../../utils';
 
 export const PizzaSummary = () => {
   const { pizzaData } = useAppStateContext();

@@ -1,47 +1,33 @@
 /* eslint-disable prettier/prettier */
-import { CheckBox, RadioButton, RadioGroup, Button } from 'Common/Components';
-import { useHistory } from 'react-router-dom';
-import { UPDATE_TOPPINGS, CREATE_NEW_ORDER } from 'reducer';
-import { useAppStateContext } from 'useAppStateContext';
-import { getDoughPizza, getIngredientsPizza, getSaucePizza, getSizePizza, getTotalPrice } from 'utils';
+import { Button } from '../../../../common/components/Button';
+import { CheckBox } from '../../../../common/components/CheckBox';
+import { RadioButton } from '../../../../common/components/RadioButton';
+import { RadioGroup } from '../../../../common/components/RadioGroup';
+import { useAppStateContext } from '../../../../useAppStateContext';
 
-export const PizzaForm = () => {
-  const { state, pizzaData, dispatch } = useAppStateContext();
-  const history = useHistory();
-  const totalPrice = getTotalPrice(state.pizzaData);
+export const PizzaForm = ({
+  onSubmit
+}) => {
+  const {
+    pizzaData,
+    updateIngredient,
+    totalPrice
+  } = useAppStateContext();
 
-  const handleChangesIngredient = (e) => {
-    dispatch({
-      type: UPDATE_TOPPINGS,
-      payload: {
-        value: e.target.value,
-        checked: e.target.checked,
-        buttonType: e.target.type,
-        name: e.target.name,
-      },
+  const handleIngredientChange = (e) => {
+    const ingredient = e.target;
+
+    updateIngredient({
+      value: ingredient.value,
+      checked: ingredient.checked,
+      buttonType: ingredient.type,
+      name: ingredient.name,
     });
   };
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { size, dough, sauce, ...ingredients } = pizzaData;
-    const numberOrder = state.orders.length;
-
-    dispatch({
-      type: CREATE_NEW_ORDER,
-      payload: {
-        number: numberOrder + 1,
-        date: new Date(),
-        size: getSizePizza(size),
-        dough: getDoughPizza(dough),
-        sauce: getSaucePizza(sauce),
-        price: totalPrice,
-        ingredients: getIngredientsPizza(ingredients),
-        statsu: 1,
-      },
-    });
-
-    history.push('/order');
+    onSubmit();
   };
 
   if (!Object.values(pizzaData).length) {
@@ -49,15 +35,14 @@ export const PizzaForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <RadioGroup
         label="Размер"
         name="size"
         displayType="line"
-        onChange={handleChangesIngredient}
+        onChange={handleIngredientChange}
       >
-        {pizzaData.size &&
-          pizzaData.size.map((item) => (
+        { pizzaData.size.map((item) => (
             <RadioButton
               key={item.value}
               value={item.value}
@@ -72,10 +57,9 @@ export const PizzaForm = () => {
         label="Тесто"
         name="dough"
         displayType="line"
-        onChange={handleChangesIngredient}
+        onChange={handleIngredientChange}
       >
-        {pizzaData.dough &&
-          pizzaData.dough.map((item) => (
+        { pizzaData.dough.map((item) => (
             <RadioButton
               key={item.value}
               value={item.value}
@@ -89,10 +73,9 @@ export const PizzaForm = () => {
         label="Выберите соус"
         name="sauce"
         displayType="line"
-        onChange={handleChangesIngredient}
+        onChange={handleIngredientChange}
       >
-        {pizzaData.sauce &&
-          pizzaData.sauce.map((item) => (
+        { pizzaData.sauce.map((item) => (
             <RadioButton
               key={item.value}
               value={item.value}
@@ -105,14 +88,13 @@ export const PizzaForm = () => {
       <div>
         Добавьте сыр
         <hr />
-        {pizzaData.cheese &&
-          pizzaData.cheese.map((item) => (
+        { pizzaData.cheese.map((item) => (
             <CheckBox
               key={item.value}
               value={item.value}
               name="cheese"
               checked={item.checked}
-              onChange={handleChangesIngredient}
+              onChange={handleIngredientChange}
             />
           ))}
       </div>
@@ -120,14 +102,13 @@ export const PizzaForm = () => {
       <div>
         Добавьте овощи
         <hr />
-        {pizzaData.veg &&
-          pizzaData.veg.map((item) => (
+        { pizzaData.veg.map((item) => (
             <CheckBox
               key={item.value}
               value={item.value}
               name="veg"
               checked={item.checked}
-              onChange={handleChangesIngredient}
+              onChange={handleIngredientChange}
             />
           ))}
       </div>
@@ -135,14 +116,13 @@ export const PizzaForm = () => {
       <div>
         Добавьте мясо
         <hr />
-        {pizzaData.meat &&
-          pizzaData.meat.map((item) => (
+        { pizzaData.meat.map((item) => (
             <CheckBox
               key={item.value}
               value={item.value}
               name="meat"
               checked={item.checked}
-              onChange={handleChangesIngredient}
+              onChange={handleIngredientChange}
             />
           ))}
       </div>

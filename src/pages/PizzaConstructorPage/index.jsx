@@ -1,23 +1,31 @@
+/* eslint-disable prettier/prettier */
 import { useEffect } from 'react';
-import { useAppStateContext } from 'useAppStateContext';
-import { getData } from 'dataServices';
-import { SET_PIZZA_DATA } from 'reducer';
+import { useHistory } from 'react-router-dom';
+import { getData } from '../../dataServices';
+import { useAppStateContext } from '../../useAppStateContext';
 import { PizzaForm, PizzaSummary } from './Components';
 import './styles.css';
 
 export const PizzaConstructorPage = () => {
-  const { isLoading, state, dispatch } = useAppStateContext();
+  const {
+    isLoading,
+    setPizzaData,
+    createNewOrder
+  } = useAppStateContext();
+  const history = useHistory();
+
+  const handleSubmit = () => {
+    createNewOrder();
+    history.push('/order');
+  };
 
   useEffect(() => {
     async function fetchData() {
-      const pizzaData = await getData({
+      const data = await getData({
         timeout: 1000,
       });
 
-      dispatch({
-        type: SET_PIZZA_DATA,
-        payload: pizzaData,
-      });
+      setPizzaData(data);
     }
     fetchData();
   }, []);
@@ -33,7 +41,7 @@ export const PizzaConstructorPage = () => {
       </div>
       <div className="content__pizza padding-16">
         <PizzaSummary />
-        <PizzaForm />
+        <PizzaForm onSubmit={handleSubmit} />
       </div>
     </div>
   );

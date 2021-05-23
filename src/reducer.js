@@ -11,7 +11,7 @@ const getNewArray = ({ list, currentItem }) =>
 
 export const SET_PIZZA_DATA = 'SET_PIZZA_DATA';
 export const CREATE_NEW_ORDER = 'CREATE_NEW_ORDER';
-export const UPDATE_TOPPINGS = 'UPDATE_TOPPINGS';
+export const UPDATE_INGREDIENT = 'UPDATE_INGREDIENT';
 
 export const reducer = (state, action) => {
   const { pizzaData } = state;
@@ -21,7 +21,7 @@ export const reducer = (state, action) => {
       return { ...state, pizzaData: action.payload, isLoading: true };
     case CREATE_NEW_ORDER:
       return { ...state, order: action.payload };
-    case UPDATE_TOPPINGS:
+    case UPDATE_INGREDIENT:
       return {
         ...state,
         pizzaData: {
