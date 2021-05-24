@@ -21,6 +21,8 @@ export const AppStateProvider = ({ children }) => {
   } = state;
   const countOrders = orders.length;
   const totalPrice = getTotalPrice(pizzaData);
+  const pizzaDataValues = Object.values(pizzaData);
+  const isPizzaData = Array.isArray(pizzaDataValues) && pizzaDataValues.length;
 
   const setPizzaData = (data) => {
     dispatch({
@@ -60,6 +62,7 @@ export const AppStateProvider = ({ children }) => {
         state,
         pizzaData,
         isLoading,
+        isPizzaData,
         totalPrice,
         setPizzaData,
         updateIngredient,

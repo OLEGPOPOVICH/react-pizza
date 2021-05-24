@@ -1,14 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Button } from "common/Components/Button/Button";
-import { CheckBox } from "common/Components/CheckBox/CheckBox";
-import { RadioButton } from "common/Components/RadioButton/RadioButton";
-import { RadioGroup } from "common/Components/RadioGroup/RadioGroup";
-import { useAppStateContext } from "useAppStateContext";
+import { Button } from 'common/components/Button/Button';
+import { CheckBox } from 'common/components/CheckBox/CheckBox';
+import { RadioButton } from 'common/components/RadioButton/RadioButton';
+import { RadioGroup } from 'common/components/RadioGroup/RadioGroup';
+import { useAppStateContext } from 'useAppStateContext';
 
-export const PizzaForm = ({
-  onSubmit
-}) => {
+export const PizzaForm = ({ onSubmit }) => {
   const {
+    isPizzaData,
     pizzaData,
     updateIngredient,
     totalPrice
@@ -30,7 +29,7 @@ export const PizzaForm = ({
     onSubmit();
   };
 
-  if (!Object.values(pizzaData).length) {
+  if (!isPizzaData) {
     return null;
   }
 
@@ -49,7 +48,7 @@ export const PizzaForm = ({
               checked={item.checked}
               label={item.label}
             />
-          ))}
+        ))}
       </RadioGroup>
 
       <hr />
@@ -65,7 +64,7 @@ export const PizzaForm = ({
               value={item.value}
               checked={item.checked}
             />
-          ))}
+        ))}
       </RadioGroup>
 
       <hr />
@@ -81,7 +80,7 @@ export const PizzaForm = ({
               value={item.value}
               checked={item.checked}
             />
-          ))}
+        ))}
       </RadioGroup>
 
       <hr />
@@ -96,7 +95,7 @@ export const PizzaForm = ({
               checked={item.checked}
               onChange={handleIngredientChange}
             />
-          ))}
+        ))}
       </div>
 
       <div>
@@ -110,7 +109,7 @@ export const PizzaForm = ({
               checked={item.checked}
               onChange={handleIngredientChange}
             />
-          ))}
+        ))}
       </div>
       <hr />
       <div>
@@ -124,7 +123,7 @@ export const PizzaForm = ({
               checked={item.checked}
               onChange={handleIngredientChange}
             />
-          ))}
+        ))}
       </div>
 
       <Button
