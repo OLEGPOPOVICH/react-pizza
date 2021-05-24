@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import { Button } from 'common/components/Button/Button';
 import { Input } from 'common/components/Input/Input';
 import { Link } from 'react-router-dom';
