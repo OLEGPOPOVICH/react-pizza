@@ -6,7 +6,7 @@ import { useAppStateContext } from "../../useAppStateContext";
 import { PizzaForm } from "./PizzaForm";
 import { PizzaSummary } from "./PizzaSummary";
 import { ProviderPizzaConstructor } from "./usePizzaConstructorContext";
-import "./styles.css";
+import "./index.css";
 
 export const PizzaConstructorPage = () => {
   const {

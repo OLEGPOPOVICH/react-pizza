@@ -11,8 +11,8 @@ export const Button = ({
 }) => (
   <button
     className={btnClassName}
-    type={ btnType || "button" }
-    disabled={ disabled }
+    type={btnType || "button"}
+    disabled={disabled}
     {...other}
   >{title}</button>
 );

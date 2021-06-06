@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { CheckoutPage } from "pages/CheckoutPage/CheckoutPage";
+import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 import { AppLayout } from "./layouts/AppLayout/AppLayout";
 import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage";
 import { AuthPage } from "./pages/AuthPage/AuthPage";
