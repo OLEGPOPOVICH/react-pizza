@@ -1,0 +1,29 @@
+.text__list {
+  padding: 0;
+  list-style: none;
+}
+
+.text__list li {
+  position: relative;
+  padding: 3px 0 3px 17px;
+  color: #4B4B7C;
+}
+.text__list li:after {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  content: '•';
+  font-size: 14px;
+  color: #4B4B7C;
+}
+
+.text__list-line {
+  display: flex;
+  flex-wrap: wrap;
+}
+.text__list-line li:first-child {
+  padding-left: 0;
+}
+.text__list-line li:first-child:after {
+  content: none;
+}

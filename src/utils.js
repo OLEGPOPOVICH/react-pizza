@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { createElement } from 'react';
-import { getRandomString } from 'common/utils';
-import { DOUGH } from './constants';
+import { createElement } from "react";
+import { getRandomString } from "common/utils";
+import { DOUGH } from "./constants";
 
 /**
  * ## Получить выбранай элемент из списка
@@ -24,7 +24,7 @@ const getSelectedElement = (elements) =>
 export const getSizePizza = (size) => {
   const selectedElement = getSelectedElement(size);
 
-  return selectedElement.length ? selectedElement[0].label : '';
+  return selectedElement.length ? selectedElement[0].label : "";
 };
 
 /**
@@ -38,7 +38,7 @@ export const getDoughPizza = (dough, oprtions = {}) => {
   const selectedElement = getSelectedElement(dough);
 
   if (!selectedElement.length) {
-    return '';
+    return "";
   }
 
   const doughValue = selectedElement[0].value;
@@ -56,7 +56,7 @@ export const getDoughPizza = (dough, oprtions = {}) => {
 export const getSaucePizza = (sauce) => {
   const selectedElement = getSelectedElement(sauce);
 
-  return selectedElement.length ? selectedElement[0].value : '';
+  return selectedElement.length ? selectedElement[0].value : "";
 };
 
 /**
@@ -100,4 +100,45 @@ export const getTotalPrice = (pizzaData = {}) => {
   const pizzaDataList = Object.values(pizzaData).flat();
 
   return pizzaDataList.reduce((acc, pizza) => (acc += pizza.checked ? +pizza.price : 0), 0);
+};
+
+const insertCharIntoString = (str, insertNumber, insertString) => {
+  let leftStr = str;
+  let rightStr = "";
+
+  if (!str && str !== "0") {
+    return "";
+  }
+
+  if (leftStr.length >= insertNumber) {
+    leftStr = str.substr(0, insertNumber - 1) + insertString;
+    rightStr = str.substr(insertNumber - 1);
+  }
+
+  return `${leftStr}${rightStr}`;
+};
+
+export const normalize = {
+  cardNumber: (value) =>
+    value
+      .replace(/\s/g, "")
+      .match(/[0-9]{1,4}/g)
+      ?.join(" ")
+      .substr(0, 19) || ""
+  ,
+  cardExpiryDate: (value) =>
+    insertCharIntoString(
+      value
+        .replace(/\s/g, "")
+        .match(/[0-9]/g)
+        ?.join("") || "", 3, "/"
+    ).substr(0, 7) || ""
+  ,
+  codeCVV: (value) =>
+    value
+      .replace(/\s/g, "")
+      .match(/[0-9]/g)
+      ?.join("")
+      .substr(0, 3) || ""
+  ,
 };

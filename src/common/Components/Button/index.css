@@ -1,6 +1,5 @@
-.wrapper__button button {
-  width: 100%;
-  padding: 16px;
+button {
+  padding: 16px 24px;
   outline: none;
   border: none;
   border-radius: 16px;
@@ -9,11 +8,11 @@
   line-height: 24px;
   cursor: pointer;
 }
-.button-disabled {
-  background-color: #E1E1ED;
-  color: #8181B1;
-}
 .button-primary {
   background-color: #00A896;
   color: white;
+}
+button:disabled {
+  background-color: #E1E1ED;
+  color: #8181B1;
 }

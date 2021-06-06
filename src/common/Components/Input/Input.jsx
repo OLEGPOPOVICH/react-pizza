@@ -1,21 +1,21 @@
 /* eslint-disable prettier/prettier */
-import './index.css';
+import { forwardRef } from "react";
+import "./index.css";
 
-export const Input = ({
+export const Input = forwardRef(({
   label,
-  value,
-  type,
-  onChange
-}) => (
+  error,
+  ...props
+}, ref) => (
   <div className="input__wrapper margin-bottom-16">
-    <div className="input_label margin-bottom-8 ">
-      {label}
+    {label &&
+      <div className="input_label margin-bottom-8 ">
+        {label}
+      </div>
+    }
+    <input ref={ref} {...props} />
+    <div className="input_error">
+      {error && error.message}
     </div>
-    <input
-      type={type}
-      value={value || ''}
-      onChange={onChange}
-    />
   </div>
-)
-
+));

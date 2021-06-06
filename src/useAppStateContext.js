@@ -1,9 +1,10 @@
-/* eslint-disable prettier/prettier */
-import { createContext, useContext, useReducer } from 'react';
-import { reducer, SET_PIZZA_DATA, UPDATE_INGREDIENT, CREATE_NEW_ORDER } from 'reducer';
-import { getDoughPizza, getIngredientsPizza, getSaucePizza, getSizePizza, getTotalPrice } from 'utils';
+/* eslint-disable import/named */
+import { createContext, useContext, useReducer } from "react";
+import { reducer, SET_PIZZA_DATA, UPDATE_INGREDIENT, CREATE_NEW_ORDER } from "reducer";
+import { getDoughPizza, getIngredientsPizza, getSaucePizza, getSizePizza, getTotalPrice } from "utils";
 
 const initialState = {
+  isAuth: false,
   isLoading: false,
   pizzaData: {},
   orders: [],
@@ -14,13 +15,10 @@ const AppStateContext = createContext();
 
 export const AppStateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {
-    pizzaData,
-    isLoading,
-    orders
-  } = state;
+  const { pizzaData, isLoading, orders } = state;
   const countOrders = orders.length;
   const totalPrice = getTotalPrice(pizzaData);
+  const isPizzaData = Object.values(pizzaData).length;
 
   const setPizzaData = (data) => {
     dispatch({
@@ -59,6 +57,7 @@ export const AppStateProvider = ({ children }) => {
       value={{
         state,
         pizzaData,
+        isPizzaData,
         isLoading,
         totalPrice,
         setPizzaData,

@@ -1,3 +1,6 @@
+.input__box > div {
+  margin-right: 15px;
+}
 .input_label {
   font-weight: 500;
   font-size: 14px;
@@ -11,4 +14,9 @@
   border: 2px solid #E1E1ED;
   box-sizing: border-box;
   border-radius: 8px;
+}
+.input_error {
+  padding: 3px 10px;
+  color: #f1464d;
+  font-size: 14px;
 }

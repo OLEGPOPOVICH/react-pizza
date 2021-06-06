@@ -1,13 +1,12 @@
-/* eslint-disable prettier/prettier */
-import { Route, Switch } from 'react-router-dom';
-import { AppLayout } from 'layouts/AppLayout/AppLayout';
-import { AuthPage } from './pages/AuthPage';
-import { RegistrationPage } from './pages/RegistrationPage';
-import { OrderPage } from './pages/OrderPage';
-import { OrdersPage } from './pages/OrdersPage';
-import { CheckPage } from './pages/CheckPage';
-import { PizzaConstructorPage } from './pages/PizzaConstructorPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+import { Route, Switch } from "react-router-dom";
+import { CheckoutPage } from "pages/CheckoutPage/CheckoutPage";
+import { AppLayout } from "./layouts/AppLayout/AppLayout";
+import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage";
+import { AuthPage } from "./pages/AuthPage/AuthPage";
+import { OrderPage } from "./pages/OrderPage";
+import { OrdersPage } from "./pages/OrdersPage";
+import { PizzaConstructorPage } from "./pages/PizzaConstructorPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export const App = () => (
   <AppLayout>
@@ -24,8 +23,8 @@ export const App = () => (
       <Route path="/orders">
         <OrdersPage />
       </Route>
-      <Route path="/check">
-        <CheckPage />
+      <Route path="/checkout">
+        <CheckoutPage />
       </Route>
       <Route exact path="/">
         <PizzaConstructorPage />
