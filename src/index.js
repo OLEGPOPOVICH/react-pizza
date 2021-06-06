@@ -5,7 +5,6 @@ import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { AppStateProvider } from "./useAppStateContext";
 import "./index.css";
 
