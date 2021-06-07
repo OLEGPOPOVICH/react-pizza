@@ -2,7 +2,7 @@
   "useTabs": false,
   "printWidth": 180,
   "tabWidth": 2,
-  "singleQuote": true,
+  "singleQuote": false,
   "jsxBracketSameLine": false,
   "parser": "flow",
   "semi": true

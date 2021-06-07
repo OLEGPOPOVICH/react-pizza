@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import { fireEvent } from '@testing-library/dom';
-import { RadioButton } from '../RadioButton/RadioButton';
-import { RadioGroup } from './RadioGroup';
+import { render, screen } from "@testing-library/react";
+import { fireEvent } from "@testing-library/dom";
+import { RadioButton } from "../RadioButton/RadioButton";
+import { RadioGroup } from "./RadioGroup";
 
-describe('RadioGroup component', () => {
-  describe('renders', () => {
-    it('rendres with label and value property', () => {
+describe("RadioGroup component", () => {
+  describe("renders", () => {
+    it("rendres with label and value property", () => {
       const { getByLabelText, getByText, getByDisplayValue } = render(
         <RadioGroup label="Группа" onChange={() => true}>
           <RadioButton label="A" />
@@ -13,12 +13,12 @@ describe('RadioGroup component', () => {
         </RadioGroup>
       );
 
-      expect(getByText('Группа')).toHaveTextContent('Группа');
-      expect(getByLabelText('A')).toBeInTheDocument();
-      expect(getByDisplayValue('B')).toHaveAttribute('value', 'B');
+      expect(getByText("Группа")).toHaveTextContent("Группа");
+      expect(getByLabelText("A")).toBeInTheDocument();
+      expect(getByDisplayValue("B")).toHaveAttribute("value", "B");
     });
 
-    it('renders with name property', () => {
+    it("renders with name property", () => {
       const { getByDisplayValue } = render(
         <RadioGroup name="radioName" onChange={() => true}>
           <RadioButton value="A" />
@@ -26,36 +26,36 @@ describe('RadioGroup component', () => {
         </RadioGroup>
       );
 
-      expect(getByDisplayValue('A')).toHaveAttribute('name', 'radioName');
-      expect(getByDisplayValue('B')).toHaveAttribute('name', 'radioName');
+      expect(getByDisplayValue("A")).toHaveAttribute("name", "radioName");
+      expect(getByDisplayValue("B")).toHaveAttribute("name", "radioName");
     });
 
-    it('renders with default checked', () => {
+    it("renders with default checked", () => {
       render(<RadioButton checked onChange={() => true} />);
-      const radio = screen.getByRole('radio');
+      const radio = screen.getByRole("radio");
 
       expect(radio).toBeChecked();
     });
   });
 
-  it('radioButton click', () => {
-    let checked = 'A';
-    const handleChange = () => (checked = 'B');
+  it("radioButton click", () => {
+    let checked = "A";
+    const handleChange = () => (checked = "B");
 
     const { getByDisplayValue, rerender } = render(
       <RadioGroup onChange={handleChange}>
-        <RadioButton value="A" checked={checked === 'A'} />
-        <RadioButton value="B" checked={checked === 'B'} />
+        <RadioButton value="A" checked={checked === "A"} />
+        <RadioButton value="B" checked={checked === "B"} />
       </RadioGroup>
     );
 
-    const radioButton = getByDisplayValue('B');
+    const radioButton = getByDisplayValue("B");
     fireEvent.click(radioButton);
 
     rerender(
       <RadioGroup onChange={handleChange}>
-        <RadioButton value="A" checked={checked === 'A'} />
-        <RadioButton value="B" checked={checked === 'B'} />
+        <RadioButton value="A" checked={checked === "A"} />
+        <RadioButton value="B" checked={checked === "B"} />
       </RadioGroup>
     );
 

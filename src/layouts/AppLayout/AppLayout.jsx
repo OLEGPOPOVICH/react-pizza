@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Logo } from 'common/Components/Logo/Logo';
-import { Menu } from 'common/Components/Menu/Menu';
-import { menuData } from '../../data';
-import './styles.css';
+import { Logo } from "common/Components/Logo/Logo";
+import { Menu } from "common/Components/Menu/Menu";
+import { menuData } from "../../data";
+import "./styles.css";
 
 export const AppLayout = ({ children }) => (
   <>

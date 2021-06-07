@@ -1,5 +1,5 @@
-import { Order } from '../OrderPage/Components';
-import './index.css';
+import { Order } from "pages/OrderPage/Order/Order";
+import "./index.css";
 
 export const OrdersPage = () => (
   <div className="wrapper__orders">

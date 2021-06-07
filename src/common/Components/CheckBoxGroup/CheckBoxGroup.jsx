@@ -1,18 +1,18 @@
 /* eslint-disable prettier/prettier */
 import { Children, cloneElement } from "react";
-import "./styles.css";
+import "./index.css";
 
-export const RadioGroup = ({
+export const CheckBoxGroup = ({
   label,
   displayType,
   children,
   ...props
 }) => (
-  <div className="radio__wrapper">
+  <div className="checkbox__wrapper">
     <div className="margin-8">{label}</div>
-    <div className={displayType ? `radio-${displayType}` : ""}>
-      {Children.map(children, (radioButton) =>
-        cloneElement(radioButton, {
+    <div className={displayType ? `checkbox-${displayType}` : ""}>
+      {Children.map(children, (checkbox) =>
+        cloneElement(checkbox, {
           ...props,
         })
       )}

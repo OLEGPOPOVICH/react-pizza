@@ -1,4 +1,4 @@
-import { data } from './data';
+import { data } from "./data";
 
 export const getData = ({ timeout = 0 }) => {
   if (!timeout) {
