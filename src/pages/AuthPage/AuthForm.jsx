@@ -8,10 +8,10 @@ import { Input } from "common/Components/Input/Input";
 import { Link } from "react-router-dom";
 
 const schema = Yup.object().shape({
-  login: Yup.string()
-    .required("Логин обязательное поле")
-    .min(5, "Логин должен быть не меньше 5 символов")
-    .max(10, "Логин должен быть не больше 10 символов"),
+  email: Yup.string()
+    .required("E-mail обязательное поле")
+    .min(5, "E-mail должен быть не меньше 5 символов")
+    .max(20, "E-mail должен быть не больше 20 символов"),
   password: Yup.string()
     .required("Пароль обязательное поле")
     .matches(/^[A-Za-z0-9]{1,}$/, "Пароль некорректный, пароль может содержать только латинские буквы и цифры!")
@@ -19,12 +19,12 @@ const schema = Yup.object().shape({
     .max(10, "Пароль должен быть не больше 10 символов"),
 });
 
-export const AuthForm = ({ formSubmit }) => {
+export const AuthForm = ({ formSubmit, isErrorAuth, errorAuth }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(schema) });
+  } = useForm({ mode: "onBlur", resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
     formSubmit(data);
@@ -34,11 +34,12 @@ export const AuthForm = ({ formSubmit }) => {
     <div className="wrapper__auth">
       <Form classNameForm="auth__form" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="txt-center">Авторизация</h1>
+        {isErrorAuth && <div className="padding">{errorAuth}</div>}
         <Input
-          data-testid="login" {...register("login")}
+          data-testid="email" {...register("email")}
           type="text"
-          label="Логин"
-          error={errors.login}
+          label="E-mail"
+          error={errors.email}
         />
         <Input
           data-testid="password" {...register("password")}

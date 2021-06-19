@@ -12,11 +12,17 @@ const getNewArray = ({ list, currentItem }) =>
 export const SET_PIZZA_DATA = "SET_PIZZA_DATA";
 export const CREATE_NEW_ORDER = "CREATE_NEW_ORDER";
 export const UPDATE_INGREDIENT = "UPDATE_INGREDIENT";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 
 export const reducer = (state, action) => {
   const { pizzaData } = state;
 
   switch (action.type) {
+    case LOGIN:
+      return { ...state, isAuth: true };
+    case LOGOUT:
+      return { ...state, isAuth: false };
     case SET_PIZZA_DATA:
       return { ...state, pizzaData: action.payload, isLoading: true };
     case CREATE_NEW_ORDER:
