@@ -1,6 +1,6 @@
 /* eslint-disable import/named */
 import { createContext, useContext, useReducer } from "react";
-import { reducer, SET_PIZZA_DATA, UPDATE_INGREDIENT, CREATE_NEW_ORDER } from "reducer";
+import { reducer, SET_PIZZA_DATA, UPDATE_INGREDIENT, CREATE_NEW_ORDER, LOGIN, LOGOUT } from "reducer";
 import { getDoughPizza, getIngredientsPizza, getSaucePizza, getSizePizza, getTotalPrice } from "utils";
 
 const initialState = {
@@ -52,6 +52,14 @@ export const AppStateProvider = ({ children }) => {
     });
   };
 
+  const login = () => {
+    dispatch({ type: LOGIN });
+  };
+
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+  };
+
   return (
     <AppStateContext.Provider
       value={{
@@ -63,6 +71,8 @@ export const AppStateProvider = ({ children }) => {
         setPizzaData,
         updateIngredient,
         createNewOrder,
+        login,
+        logout,
       }}
     >
       {children}

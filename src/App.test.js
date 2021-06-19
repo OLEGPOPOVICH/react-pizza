@@ -1,6 +1,7 @@
 import { Router } from "react-router-dom";
 import { render, fireEvent, getByText } from "@testing-library/react";
 import { createMemoryHistory } from "history";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { AppStateProvider } from "./useAppStateContext";
 import { App } from "./App";
 
@@ -13,23 +14,29 @@ const renderWithRouter = (component, { route = "/", history = createMemoryHistor
   };
 };
 
+const useApp = () => {
+  const queryClient = new QueryClient();
+
+  const app = renderWithRouter(
+    <AppStateProvider>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </AppStateProvider>
+  );
+
+  return { ...app };
+};
+
 describe("App", () => {
   it("render the constructor page", async () => {
-    const { findByText } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { findByText } = useApp();
 
     expect(await findByText("Собери свою пиццу"));
   });
 
   it("click on the auth link", () => {
-    const { getByRole } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { getByRole } = useApp();
 
     fireEvent.click(getByText(getByRole("navigation"), "Авторизация"));
 
@@ -38,11 +45,7 @@ describe("App", () => {
   });
 
   it("click on the registration link from the auth page", () => {
-    const { getByRole, container } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { getByRole, container } = useApp();
 
     fireEvent.click(getByText(getByRole("navigation"), "Авторизация"));
     fireEvent.click(getByText(container, "Зарегистрироваться"));
@@ -52,11 +55,7 @@ describe("App", () => {
   });
 
   it("click on the auth link from the registration page", () => {
-    const { getByRole, container } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { getByRole, container } = useApp();
 
     fireEvent.click(getByText(getByRole("navigation"), "Авторизация"));
     fireEvent.click(getByText(container, "Зарегистрироваться"));
@@ -67,11 +66,7 @@ describe("App", () => {
   });
 
   it("click on the checkout link", () => {
-    const { getByRole } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { getByRole } = useApp();
 
     fireEvent.click(getByText(getByRole("navigation"), "Оформление заказа"));
 
@@ -79,11 +74,7 @@ describe("App", () => {
   });
 
   it("click on the orders link", () => {
-    const { getByRole } = renderWithRouter(
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    );
+    const { getByRole } = useApp();
 
     fireEvent.click(getByText(getByRole("navigation"), "Заказы"));
 

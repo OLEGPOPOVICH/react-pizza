@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { App } from "./App";
 import { AppStateProvider } from "./useAppStateContext";
 import "./index.css";
@@ -17,11 +18,15 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <AppStateProvider>
       <BrowserRouter>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </BrowserRouter>
     </AppStateProvider>
   </React.StrictMode>,
