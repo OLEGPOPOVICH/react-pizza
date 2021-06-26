@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { localSt } from "common/utils/localStorage";
-import { useAppStateContext } from "../../useAppStateContext";
+import { useAppStateContext } from "../../AppStateContext";
 import { auth } from "../../api";
 import { AuthForm } from "./AuthForm";
 import "./index.css";

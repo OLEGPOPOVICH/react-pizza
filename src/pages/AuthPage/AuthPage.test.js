@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { localSt } from "common/utils/localStorage";
 import { auth } from "api";
-import { AppStateProvider } from "useAppStateContext";
+import { AppStateProvider } from "AppStateContext";
 import { AuthPage } from "./AuthPage";
 
 jest.mock("../../api", () => ({
@@ -84,7 +84,7 @@ describe("AuthPage", () => {
 
       const dataLS = localSt.getItem("token");
 
-      expect(dataLS).toBe("123456789");
+      expect(dataLS).toBe(123456789);
     });
   });
 });
