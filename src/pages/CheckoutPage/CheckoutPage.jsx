@@ -1,25 +1,46 @@
+import { useHistory } from "react-router-dom";
+import { localSt } from "common/utils/localStorage";
 import { Order } from "pages/OrderPage/Order/Order";
+import { useEffect, useState } from "react";
+import { useAppStateContext } from "AppStateContext";
 import { CheckoutForm } from "./CheckoutForm";
 import { CheckoutResult } from "./CheckoutResult";
-import { ProviderCheckoutPage } from "./useCheckoutPageContext";
+import { CheckoutPageProvider } from "./CheckoutPageContext";
 
 export const CheckoutPage = () => {
+  const history = useHistory();
+  const { state } = useAppStateContext();
+  const [order, setOrder] = useState(state.order);
+  const [deviveryPrice, setDeliveryPrice] = useState(200);
+
   const handleClick = (data) => {
-    console.log(data);
+    const newOrder = { ...data, ...order, ...{ deviveryPrice } };
   };
+
+  useEffect(() => {
+    if (!Object.keys(order).length) {
+      const orderLocalSt = localSt.getItem("order");
+
+      if (orderLocalSt) {
+        setOrder(orderLocalSt);
+      } else {
+        history.push("/");
+      }
+    }
+  }, []);
 
   return (
     <div className="page">
       <div className="two__col">
-        <ProviderCheckoutPage>
+        <CheckoutPageProvider>
           <div className="col">
-            <CheckoutForm />
+            <CheckoutForm formSubmit={handleClick} />
           </div>
           <div className="col">
-            <Order />
-            <CheckoutResult formSubmit={handleClick} />
+            <Order order={order} />
+            <CheckoutResult orderPrice={order.price} deliveryPrice={deviveryPrice} />
           </div>
-        </ProviderCheckoutPage>
+        </CheckoutPageProvider>
       </div>
     </div>
   );
