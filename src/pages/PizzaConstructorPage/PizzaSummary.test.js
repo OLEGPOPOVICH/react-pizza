@@ -1,7 +1,8 @@
-import { render, waitFor, getByDisplayValue } from "@testing-library/react";
+import { render, waitFor, getByDisplayValue, act } from "@testing-library/react";
 import { fireEvent, getByTestId, getByText, queryByText } from "@testing-library/dom";
 import { MemoryRouter } from "react-router-dom";
-import { AppStateProvider } from "../../useAppStateContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { AppStateProvider } from "../../AppStateContext";
 import { PizzaConstructorPage } from "./index";
 
 const mockHistoryPush = jest.fn();
@@ -13,20 +14,24 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+const queryClient = new QueryClient();
+
 describe("PizzaSammary", () => {
   describe("on click button order", () => {
     it("send the selected pizza", async () => {
       const { container } = render(
         <MemoryRouter>
-          <AppStateProvider>
-            <PizzaConstructorPage />
-          </AppStateProvider>
+          <QueryClientProvider client={queryClient}>
+            <AppStateProvider>
+              <PizzaConstructorPage />
+            </AppStateProvider>
+          </QueryClientProvider>
         </MemoryRouter>
       );
 
       fireEvent.click(await waitFor(() => getByDisplayValue(container, "35"), { container }));
       fireEvent.click(getByDisplayValue(container, "Пышное"));
-      fireEvent.click(getByDisplayValue(container, "Острый соус"));
+      fireEvent.click(getByDisplayValue(container, "Острый"));
       fireEvent.click(getByDisplayValue(container, "Чеддер"));
       fireEvent.click(getByDisplayValue(container, "Томаты"));
       fireEvent.click(getByDisplayValue(container, "Перец"));
@@ -34,17 +39,23 @@ describe("PizzaSammary", () => {
 
       expect(getByText(container, "35 cм на пышном тесте"));
       const ingredients = getByTestId(container, "ingredients");
-      expect(getByText(ingredients, "Острый соус"));
-      expect(getByText(ingredients, "Моцарелла"));
+      expect(getByText(ingredients, "Острый"));
       expect(queryByText(ingredients, "Чеддер")).toBeNull();
       expect(queryByText(ingredients, "Томаты")).toBeNull();
+      expect(getByText(ingredients, "Брокколи"));
       expect(getByText(ingredients, "Перец"));
       expect(getByText(ingredients, "Пепперони"));
+      expect(getByText(ingredients, "Бекон"));
+      expect(getByText(ingredients, "Курица"));
 
       const buttonOrder = getByTestId(container, "btn-order");
-      expect(getByText(buttonOrder, "Заказать за 329 руб"));
+      expect(getByText(buttonOrder, "Заказать за 742 руб"));
 
-      fireEvent.click(getByText(buttonOrder, "Заказать за 329 руб"));
+
+      await act(async () => {
+        fireEvent.click(buttonOrder);
+      });
+
       expect(mockHistoryPush).toHaveBeenCalledWith("/checkout");
     });
   });
