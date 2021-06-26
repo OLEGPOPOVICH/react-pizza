@@ -8,7 +8,15 @@ export const localSt = {
 
     localStorage.setItem(key, data);
   },
-  getItem: (key) => localStorage.getItem(key),
+  getItem: (key) => {
+    const value = localStorage.getItem(key);
+
+    if (value) {
+      return JSON.parse(value);
+    }
+
+    return null;
+  },
   removeItem: (key) => localStorage.removeItem(key),
   clear: () => localStorage.clear(),
 };
