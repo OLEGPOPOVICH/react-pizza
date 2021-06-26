@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { checkFormCompleted } from "./utils";
 
 const schema = Yup.object().shape({
   address: Yup.string()
@@ -32,26 +33,13 @@ const schema = Yup.object().shape({
 
 const CheckoutPageContext = createContext();
 
-const checkFormValid = (errors, fieldsForm) => {
-  const isErrors = Object.values(errors).length;
-  let isEmptyFields = true;
-
-  const valuesFieldsForm = Object.values(fieldsForm);
-
-  if (valuesFieldsForm.length) {
-    isEmptyFields = !valuesFieldsForm.every(value => value !== "");
-  }
-
-  return !(isErrors || isEmptyFields);
-}
-
-export const ProviderCheckoutPage = ({ children }) => {
+export const CheckoutPageProvider = ({ children }) => {
   const { formState, getValues, ...other } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
     resolver: yupResolver(schema)
   });
 
-  const isFormCompleted = checkFormValid(formState.errors, getValues());
+  const isFormCompleted = checkFormCompleted(formState.errors, getValues());
 
   return (
     <CheckoutPageContext.Provider

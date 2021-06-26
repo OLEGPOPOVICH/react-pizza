@@ -32,7 +32,7 @@ export const AuthForm = ({ formSubmit, isErrorAuth, errorAuth }) => {
 
   return (
     <div className="wrapper__auth">
-      <Form classNameForm="auth__form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="txt-center">Авторизация</h1>
         {isErrorAuth && <div className="padding">{errorAuth}</div>}
         <Input

@@ -1,56 +1,42 @@
+/* eslint-disable consistent-return */
 /* eslint-disable prettier/prettier */
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import { getData } from "../../dataServices";
-import { useAppStateContext } from "../../useAppStateContext";
+import { getTopping } from "api";
+import { useAppStateContext } from "../../AppStateContext";
+import { PizzaConstructorProvider } from "./PizzaConstructorContext";
 import { PizzaForm } from "./PizzaForm";
 import { PizzaSummary } from "./PizzaSummary";
-import { ProviderPizzaConstructor } from "./usePizzaConstructorContext";
+
 import "./index.css";
+import { filterByGroupToppings } from "./utils";
 
 export const PizzaConstructorPage = () => {
-  const {
-    pizzaData,
-    isLoading,
-    setPizzaData,
-  } = useAppStateContext();
   const history = useHistory();
-  const [pizzaDefault, setPizzaDefault] = useState({});
+  const [pizzaData, setPizzaData] = useState({});
+  const [isLoading, setIsloading] = useState(true);
+  const { createNewOrder } = useAppStateContext();
+  const { isError, error } = useQuery("toppings", getTopping, {
+    retry: 2,
+    onSuccess: ({ data }) => {
+      const toppings = filterByGroupToppings(data);
 
-  const onClick = () => {
+      setPizzaData(toppings);
+      setIsloading(false);
+    }
+  })
+
+  const handleSubmit = (order) => {
+    createNewOrder(order);
     history.push("/checkout");
   };
 
-  const setDataPizzaDefault = (data) => {
-    const dataDefault = {}
-    const keysData = Object.keys(data);
-
-    keysData.forEach((key) =>  {
-      dataDefault[key] = data[key].reduce((acc, topping) => {
-        if (topping.checked) {
-          acc.push(topping.value);
-        }
-
-        return acc;
-      }, [])
-    });
-
-    setPizzaDefault(dataDefault);
+  if (isError) {
+    return <div>Error: {error.message}</div>;
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getData({
-        timeout: 1000,
-      });
-
-      setPizzaData(data);
-      setDataPizzaDefault(data);
-    }
-    fetchData();
-  }, []);
-
-  if (!isLoading) {
+  if (isLoading) {
     return <div>Loading ...</div>;
   }
 
@@ -60,14 +46,14 @@ export const PizzaConstructorPage = () => {
         <h1>Собери свою пиццу</h1>
       </div>
       <div className="two__col">
-        <ProviderPizzaConstructor pizzaDefault={pizzaDefault} pizzaData={pizzaData}>
+        <PizzaConstructorProvider pizzaData={pizzaData}>
           <div className="col">
-            <PizzaForm />
+            <PizzaForm onSubmit={handleSubmit} />
           </div>
           <div className="col">
-            <PizzaSummary onClick={onClick} />
+            <PizzaSummary />
           </div>
-        </ProviderPizzaConstructor>
+        </PizzaConstructorProvider>
       </div>
     </div>
   );

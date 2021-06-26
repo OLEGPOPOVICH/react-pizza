@@ -3,11 +3,14 @@
 import { normalize } from "utils";
 import { Form } from "common/Components/Form/Form";
 import { Input } from "common/Components/Input/Input";
-import { useCheckoutPageContext } from "./useCheckoutPageContext";
+import { useCheckoutPageContext } from "./CheckoutPageContext";
 
-export const CheckoutForm = () => {
+export const CheckoutForm = ({
+  formSubmit
+}) => {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useCheckoutPageContext();
   const cardNumber = register("cardNumber");
@@ -15,7 +18,7 @@ export const CheckoutForm = () => {
   const codeCVV = register("codeCVV")
 
   return (
-    <Form>
+    <Form id="formCheckout" onSubmit={handleSubmit((data) => formSubmit(data))}>
       <h2>Адрес доставки</h2>
       <Input
         data-testid="address"

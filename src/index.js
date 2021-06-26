@@ -6,7 +6,7 @@ import { Integrations } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { App } from "./App";
-import { AppStateProvider } from "./useAppStateContext";
+import { AppStateProvider } from "./AppStateContext";
 import "./index.css";
 
 Sentry.init({

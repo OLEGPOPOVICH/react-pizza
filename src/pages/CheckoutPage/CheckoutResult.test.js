@@ -1,30 +1,33 @@
 import { render } from "@testing-library/react";
 import { CheckoutResult } from "./CheckoutResult";
-import { ProviderCheckoutPage } from "./useCheckoutPageContext";
+import { CheckoutPageProvider } from "./CheckoutPageContext";
 
 describe("CheckoutResult", () => {
   it("renders", () => {
-    const { getByText, getByRole } = render(
-      <ProviderCheckoutPage>
-        <CheckoutResult />
-      </ProviderCheckoutPage>
+    const orderPrice = 600;
+    const deliveryPrice = 200;
+    const toPay = orderPrice + deliveryPrice;
+
+    const { getByText, getByTestId } = render(
+      <CheckoutPageProvider>
+        <CheckoutResult orderPrice={orderPrice} deliveryPrice={deliveryPrice} />
+      </CheckoutPageProvider>
     );
 
-    const orderCost = getByText("Стоимость заказа");
-    const delivary = getByText("Доставка");
-    const toPay = getByText("К оплате");
-    const button = getByRole("button", "Заполните форму заказа");
+    const orderPriceTitle = getByText("Стоимость заказа");
+    const delivaryTitle = getByText("Доставка");
+    const toPayTitle = getByText("К оплате");
+    const button = getByTestId("btn-order");
 
-    expect(orderCost).toBeInTheDocument();
-    expect(orderCost.nextSibling.innerHTML).toBe("420 руб");
+    expect(orderPriceTitle).toBeInTheDocument();
+    expect(orderPriceTitle.nextSibling.innerHTML).toBe(`${orderPrice} руб`);
 
-    expect(delivary).toBeInTheDocument();
-    expect(delivary.nextSibling.innerHTML).toBe("180 руб");
+    expect(delivaryTitle).toBeInTheDocument();
+    expect(delivaryTitle.nextSibling.innerHTML).toBe(`${deliveryPrice} руб`);
 
-    expect(toPay).toBeInTheDocument();
-    expect(toPay.nextSibling.innerHTML).toBe("600 руб");
+    expect(toPayTitle).toBeInTheDocument();
+    expect(toPayTitle.nextSibling.innerHTML).toBe(`${toPay} руб`);
 
-    expect(button).toBeInTheDocument();
     expect(button).toBeDisabled();
   });
 });

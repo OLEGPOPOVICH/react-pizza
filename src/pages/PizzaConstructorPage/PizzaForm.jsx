@@ -4,14 +4,20 @@ import { CheckBoxGroup } from "common/Components/CheckBoxGroup/CheckBoxGroup";
 import { Form } from "common/Components/Form/Form";
 import { RadioButton } from "common/Components/RadioButton/RadioButton";
 import { RadioGroup } from "common/Components/RadioGroup/RadioGroup";
-import { usePizzaConstructorContext } from "pages/PizzaConstructorPage/usePizzaConstructorContext";
+import { usePizzaConstructorContext } from "pages/PizzaConstructorPage/PizzaConstructorContext";
 
-export const PizzaForm = () => {
-  const { register, pizzaData } = usePizzaConstructorContext();
+export const PizzaForm = ({
+  onSubmit
+}) => {
+  const { register, pizzaData, handleSubmit, totalPrice } = usePizzaConstructorContext();
+
+  const handleOnSubmit = (data) => {
+    onSubmit({...data, price: totalPrice })
+  }
 
   return (
     <>
-      <Form>
+      <Form id="order" onSubmit={handleSubmit(handleOnSubmit)}>
         <div className="margin-bottom-16">
           <div className="pizza__param">
             <RadioGroup
@@ -20,7 +26,7 @@ export const PizzaForm = () => {
             >
               {pizzaData.size.map((item) => (
                 <RadioButton
-                  key={item.value}
+                  key={item.slug}
                   defaultChecked={item.checked}
                   label={item.label}
                   value={item.value}
@@ -36,7 +42,7 @@ export const PizzaForm = () => {
             >
               {pizzaData.dough.map((item) => (
                 <RadioButton
-                  key={item.value}
+                  key={item.slug}
                   defaultChecked={item.checked}
                   label={item.label}
                   value={item.value}
@@ -54,7 +60,7 @@ export const PizzaForm = () => {
             >
               {pizzaData.sauce.map((item) => (
                 <RadioButton
-                  key={item.value}
+                  key={item.slug}
                   defaultChecked={item.checked}
                   label={item.label}
                   value={item.value}
@@ -72,7 +78,7 @@ export const PizzaForm = () => {
             >
               {pizzaData.cheese.map((item) => (
                 <CheckBox
-                  key={item.value}
+                  key={item.slug}
                   value={item.value}
                   name="cheese"
                   defaultChecked={item.checked}
@@ -88,12 +94,12 @@ export const PizzaForm = () => {
               label="Добавьте овощи"
               displayType="line"
             >
-              {pizzaData.veg.map((item) => (
+              {pizzaData.vegetables.map((item) => (
                 <CheckBox
-                  key={item.value}
+                  key={item.slug}
                   value={item.value}
                   defaultChecked={item.checked}
-                  {...register('veg')}
+                  {...register('vegetables')}
                 />
               ))}
             </CheckBoxGroup>
@@ -107,7 +113,7 @@ export const PizzaForm = () => {
             >
               {pizzaData.meat.map((item) => (
                 <CheckBox
-                  key={item.value}
+                  key={item.slug}
                   value={item.value}
                   defaultChecked={item.checked}
                   {...register('meat')}

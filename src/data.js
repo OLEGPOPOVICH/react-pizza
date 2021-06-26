@@ -37,5 +37,4 @@ export const menuData = [
   { link: "/", title: "Пицца" },
   { link: "/auth", title: "Авторизация" },
   { link: "/orders", title: "Заказы" },
-  { link: "/checkout", title: "Оформление заказа" },
 ];
