@@ -19,3 +19,25 @@ export const auth = (authData) => {
       throw new Error(error.message);
     });
 };
+
+export const getTopping = () => {
+  return api
+    .get("ingredients")
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};
+
+export const createOrder = (order) => {
+  return api
+    .post("orders")
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};
