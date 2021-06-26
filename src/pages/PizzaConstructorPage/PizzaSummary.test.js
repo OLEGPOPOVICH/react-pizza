@@ -4,6 +4,8 @@ import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppStateProvider } from "../../AppStateContext";
 import { PizzaConstructorPage } from "./index";
+import { getTopping } from "api";
+import { dataTest } from "./dataTest";
 
 const mockHistoryPush = jest.fn();
 
@@ -14,11 +16,31 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
+jest.mock("../../api", () => ({
+  getTopping: jest.fn(),
+}));
+
+const getControlledPromise = () => {
+  let resolve;
+  let reject;
+  const promise = new Promise((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+
+  getTopping.mockImplementation(() => promise);
+
+  return { resolve, reject };
+};
+
 const queryClient = new QueryClient();
 
 describe("PizzaSammary", () => {
   describe("on click button order", () => {
     it("send the selected pizza", async () => {
+      const { resolve } = getControlledPromise();
+      resolve(dataTest);
+
       const { container } = render(
         <MemoryRouter>
           <QueryClientProvider client={queryClient}>
