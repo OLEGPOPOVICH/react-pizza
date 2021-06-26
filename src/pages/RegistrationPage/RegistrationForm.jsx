@@ -29,7 +29,7 @@ export const RegistrationForm = ({ formSubmit }) => {
 
   return (
     <div className="wrapper__auth">
-      <Form classNameForm="auth__form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="txt-center">Регистрация</h1>
         <Input data-testid="login" {...register("login")} type="text" label="Логин" error={errors.login} />
         <Input data-testid="password" {...register("password")} type="text" label="Пароль" error={errors.password} />
