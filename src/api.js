@@ -41,3 +41,14 @@ export const createOrder = (order) => {
       throw new Error(error.message);
     });
 };
+
+export const getOrders = () => {
+  return api
+    .get("orders")
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};

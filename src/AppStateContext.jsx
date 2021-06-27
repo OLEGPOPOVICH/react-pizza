@@ -7,7 +7,6 @@ import { getDateFormat } from "./common/utils/date";
 const initialState = {
   isAuth: false,
   isLoading: true,
-  orders: [],
   order: {},
 };
 
@@ -15,14 +14,18 @@ const AppStateContext = createContext();
 
 export const AppStateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { isLoading, orders } = state;
-  const countOrders = orders.length;
 
   const createNewOrder = (order) => {
+    const { price, size, dough, sauce, ...toppings } = order;
+    const ingredients = Object.values(toppings).flat(2);
     const newOrder = {
-      number: countOrders + 1,
+      size,
+      dough,
+      sauce,
+      ingredients,
+      price,
+      number: 999,
       date: getDateFormat({ date: new Date(), format: "DD.MM.YYYY в HH:mm:ss" }),
-      ...order,
       status: 1,
     };
 
@@ -46,7 +49,6 @@ export const AppStateProvider = ({ children }) => {
     <AppStateContext.Provider
       value={{
         state,
-        isLoading,
         createNewOrder,
         login,
         logout,

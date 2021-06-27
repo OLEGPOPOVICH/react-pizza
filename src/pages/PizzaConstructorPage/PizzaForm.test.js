@@ -1,10 +1,10 @@
 import { getByTestId, getByText, render, waitFor } from "@testing-library/react";
 import { fireEvent, getByDisplayValue, queryByText } from "@testing-library/dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { getTopping } from "api";
 import { AppStateProvider } from "../../AppStateContext";
 import { PizzaConstructorPage } from "./index";
 import { dataTest } from "./dataTest";
-import { getTopping } from "api";
 
 jest.mock("../../api", () => ({
   getTopping: jest.fn(),
@@ -48,7 +48,7 @@ describe("PizzaForm", () => {
 
     expect(getByText(container, "35 cм на пышном тесте"));
     const ingredients = getByTestId(container, "ingredients");
-    expect(getByText(ingredients, "Острый"));
+    expect(getByText(ingredients, "Острый соус"));
     expect(queryByText(ingredients, "Чеддер")).toBeNull();
     expect(queryByText(ingredients, "Томаты")).toBeNull();
     expect(getByText(ingredients, "Брокколи"));
