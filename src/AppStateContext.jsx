@@ -1,7 +1,7 @@
 /* eslint-disable import/named */
 import { createContext, useContext, useReducer } from "react";
 import { localSt } from "common/utils/localStorage";
-import { reducer, CREATE_NEW_ORDER, LOGIN, LOGOUT } from "reducer";
+import { reducer, CREATE_NEW_ORDER, UPDATE_ORDER, LOGIN, LOGOUT } from "reducer";
 import { getDateFormat } from "./common/utils/date";
 
 const initialState = {
@@ -24,7 +24,6 @@ export const AppStateProvider = ({ children }) => {
       sauce,
       ingredients,
       price,
-      number: 999,
       date: getDateFormat({ date: new Date(), format: "DD.MM.YYYY в HH:mm:ss" }),
       status: 1,
     };
@@ -34,6 +33,15 @@ export const AppStateProvider = ({ children }) => {
     dispatch({
       type: CREATE_NEW_ORDER,
       payload: { ...newOrder },
+    });
+  };
+
+  const updateOrder = (data) => {
+    const { order } = state;
+
+    dispatch({
+      type: UPDATE_ORDER,
+      payload: { ...order, ...data },
     });
   };
 
@@ -50,6 +58,7 @@ export const AppStateProvider = ({ children }) => {
       value={{
         state,
         createNewOrder,
+        updateOrder,
         login,
         logout,
       }}
