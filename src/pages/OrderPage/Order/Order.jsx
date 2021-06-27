@@ -1,22 +1,21 @@
 /* eslint-disable prettier/prettier */
-import { TextList } from "common/Components/TextList/TextList";
 import { DOUGH } from "../../../constants";
 import "./index.css";
 
-export const Order = ({ order }) => {
+export const Order = ({ order, orderPrice }) => {
   const {
-    size,
-    dough,
     number,
     date,
-    status,
-    cheese,
-    meat,
-    sauce,
     price,
+    status,
+    size,
+    dough,
+    sauce,
+    ingredients,
+    cardNumber
   } = order;
   const isOrder = Object.keys(order).length;
-  const textList = [cheese, meat, sauce].flat().filter(topping => topping);
+  const textList = [ `${sauce} соус`, ingredients].flat();
 
   if (!isOrder) {
     return <div>Loading ...</div>;
@@ -32,13 +31,13 @@ export const Order = ({ order }) => {
       <div className="content__order">
         <h2>Пицца на обед в пятницу</h2>
         <div>
-          {size} см на {DOUGH[dough]} тесте • <TextList textList={textList} />
+          {size} см на {DOUGH[dough]} тесте • {textList.join(" • ")}
         </div>
       </div>
       <div className="footer__order">
         <div className="payment__order">
-          <span className="price">{price} руб</span>
-          <span className="payment_system">2345</span>
+          <span className="price">{orderPrice} руб</span>
+          <span className="payment_system">{cardNumber && cardNumber.substring(cardNumber.length - 4)}</span>
         </div>
         <div className="order__procces">
           <span>Доставляется</span>
