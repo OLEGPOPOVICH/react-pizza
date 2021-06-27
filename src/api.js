@@ -33,7 +33,7 @@ export const getTopping = () => {
 
 export const createOrder = (order) => {
   return api
-    .post("orders")
+    .post("orders", order)
     .then((response) => {
       return response;
     })
@@ -47,6 +47,17 @@ export const getOrders = () => {
     .get("orders")
     .then((response) => {
       return response;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};
+
+export const getOrdersCount = () => {
+  return api
+    .get("orders/count")
+    .then((response) => {
+      return response.data;
     })
     .catch((error) => {
       throw new Error(error.message);
