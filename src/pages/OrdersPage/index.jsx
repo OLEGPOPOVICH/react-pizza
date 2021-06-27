@@ -26,7 +26,7 @@ export const OrdersPage = () => {
       <h1 className="txt-center">Заказы</h1>
       <div className="orders">
         {orders.map((order) => (
-          <Order key={order.number} order={order} orderPrice={order.totalPrice} />
+          <Order key={order.date} order={order} orderPrice={order.totalPrice} />
         ))}
       </div>
     </div>
