@@ -6,8 +6,6 @@ export const Order = ({ order, orderPrice }) => {
   const {
     number,
     date,
-    price,
-    status,
     size,
     dough,
     sauce,
