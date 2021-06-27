@@ -1,8 +1,8 @@
 import { getByTestId, getByText, getByDisplayValue, render } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { getTopping } from "api";
 import { AppStateProvider } from "../../AppStateContext";
 import { PizzaConstructorPage } from ".";
-import { getTopping } from "api";
 import { dataTest } from "./dataTest";
 
 jest.mock("../../api", () => ({
@@ -38,7 +38,7 @@ describe("PizzaConstructorPage", () => {
     );
 
     expect(await findByText("30 cм на тонком тесте"));
-    expect(getByText(getByTestId(container, "ingredients"), "Томатный"));
+    expect(getByText(getByTestId(container, "ingredients"), "Томатный соус"));
     expect(getByText(getByTestId(container, "ingredients"), "Бекон"));
     expect(getByText(getByTestId(container, "ingredients"), "Курица"));
     expect(getByText(getByTestId(container, "ingredients"), "Томаты"));

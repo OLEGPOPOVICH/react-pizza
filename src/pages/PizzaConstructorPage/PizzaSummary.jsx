@@ -6,7 +6,9 @@ import { DOUGH } from "../../constants";
 
 export const PizzaSummary = () => {
   const { pizzaWatch, totalPrice } = usePizzaConstructorContext();
-  const { size, dough, ...toppings } = pizzaWatch;
+  const { size, dough, sauce, ...ingredients } = pizzaWatch;
+  const toppings = Object.values(ingredients);
+  const textList = [ `${sauce} соус`, toppings].flat(2);
 
   return (
     <>
@@ -18,7 +20,7 @@ export const PizzaSummary = () => {
         </div>
         <div data-testid="ingredients">
           <TextList
-            textList={Object.values(toppings).flat()}
+            textList={textList}
             className="text__list-line"
           />
         </div>

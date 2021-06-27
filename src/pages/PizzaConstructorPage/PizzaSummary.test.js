@@ -2,9 +2,9 @@ import { render, waitFor, getByDisplayValue, act } from "@testing-library/react"
 import { fireEvent, getByTestId, getByText, queryByText } from "@testing-library/dom";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { getTopping } from "api";
 import { AppStateProvider } from "../../AppStateContext";
 import { PizzaConstructorPage } from "./index";
-import { getTopping } from "api";
 import { dataTest } from "./dataTest";
 
 const mockHistoryPush = jest.fn();
@@ -61,7 +61,7 @@ describe("PizzaSammary", () => {
 
       expect(getByText(container, "35 cм на пышном тесте"));
       const ingredients = getByTestId(container, "ingredients");
-      expect(getByText(ingredients, "Острый"));
+      expect(getByText(ingredients, "Острый соус"));
       expect(queryByText(ingredients, "Чеддер")).toBeNull();
       expect(queryByText(ingredients, "Томаты")).toBeNull();
       expect(getByText(ingredients, "Брокколи"));
@@ -72,7 +72,6 @@ describe("PizzaSammary", () => {
 
       const buttonOrder = getByTestId(container, "btn-order");
       expect(getByText(buttonOrder, "Заказать за 742 руб"));
-
 
       await act(async () => {
         fireEvent.click(buttonOrder);
