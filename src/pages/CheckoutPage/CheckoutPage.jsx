@@ -14,7 +14,12 @@ export const CheckoutPage = () => {
   const [deviveryPrice, setDeliveryPrice] = useState(200);
 
   const handleClick = (data) => {
-    const newOrder = { ...data, ...order, ...{ deviveryPrice } };
+    const newOrder = {
+      deviveryPrice,
+      totalPrice: order.price + deviveryPrice,
+      ...data,
+      ...order,
+    };
   };
 
   useEffect(() => {
@@ -37,7 +42,7 @@ export const CheckoutPage = () => {
             <CheckoutForm formSubmit={handleClick} />
           </div>
           <div className="col">
-            <Order order={order} />
+            <Order order={order} orderPrice={order.price} />
             <CheckoutResult orderPrice={order.price} deliveryPrice={deviveryPrice} />
           </div>
         </CheckoutPageProvider>
