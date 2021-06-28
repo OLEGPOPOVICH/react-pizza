@@ -26,13 +26,13 @@ npm start
 ```
 
 ```javascript
-http://localhost:3000
+http://localhost:3030
 ```
 ### NPM скрипты
 
 | Скрипт        | Описание                                              |
 | :------------ | ----------------------------------------------------- |
-| npm run start | запуск проекта на http://localhost:3000               |
+| npm run start | запуск проекта на http://localhost:3030               |
 | npm run build | сборка проекта с настройками для прода                |
 | npm run test  | запуск тестов                                         |
 | npm run eject |                                                       |
