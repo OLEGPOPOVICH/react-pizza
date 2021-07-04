@@ -81,7 +81,6 @@ export const PizzaForm = ({
                   key={item.slug}
                   value={item.value}
                   name="cheese"
-                  defaultChecked={item.checked}
                   {...register('cheese')}
                 />
               ))}
@@ -98,7 +97,6 @@ export const PizzaForm = ({
                 <CheckBox
                   key={item.slug}
                   value={item.value}
-                  defaultChecked={item.checked}
                   {...register('vegetables')}
                 />
               ))}
@@ -115,7 +113,6 @@ export const PizzaForm = ({
                 <CheckBox
                   key={item.slug}
                   value={item.value}
-                  defaultChecked={item.checked}
                   {...register('meat')}
                 />
               ))}
