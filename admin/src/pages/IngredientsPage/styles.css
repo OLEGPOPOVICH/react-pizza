@@ -1,0 +1,17 @@
+.ingredient__category {
+  background-color: whitesmoke;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+.ingredient__category h2 {
+  margin: 0px;
+}
+.ingredients {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.ingredients .ingredient {
+  max-width: 48%;
+  width: 100%;
+}
