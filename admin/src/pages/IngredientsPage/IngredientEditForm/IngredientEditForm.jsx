@@ -71,7 +71,7 @@ export const IngredientEditForm = ({
               <div className="wrap__download">
                 <label>Главная фотка</label>
                 <div>
-                  <img src={`/images/${ingredient.thumbnail || 'not-image.png'}`} alt={ingredient.value} />
+                  <img src={`${process.env.REACT_APP_URL_SERVER}/uploads/${ingredient.thumbnail || 'not-image.png'}`} alt={ingredient.value} />
                 </div>
                 <input
                   {...register("thumbnail")}
@@ -85,7 +85,7 @@ export const IngredientEditForm = ({
               <div className="wrap__download">
                 <label>Доп. фотка</label>
                 <div>
-                  <img src={`/images/${ingredient.image || 'not-image.png'}`} alt={ingredient.value} />
+                  <img src={`${process.env.REACT_APP_URL_SERVER}/uploads/${ingredient.image || 'not-image.png'}`} alt={ingredient.value} />
                 </div>
                 <input
                   {...register("image")}
