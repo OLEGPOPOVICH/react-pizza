@@ -27,7 +27,7 @@ export const useIngredietsQuery = () => {
         return ingredient
       })
     })
-  });
+  }, [ingredients]);
 
   return {
     isLoading,

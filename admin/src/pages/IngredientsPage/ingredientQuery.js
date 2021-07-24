@@ -53,7 +53,7 @@ export const useIngredietQuery = ({ updateIngredient }) => {
       delete: true,
       ingredientId,
     });
-  }, []);
+  }, [ingredientQuery]);
 
   const updateIngredientQuery = useCallback((ingredient) => {
     setIngredientQuery({
@@ -62,7 +62,7 @@ export const useIngredietQuery = ({ updateIngredient }) => {
       update: true,
       ingredientId: ingredient.get('id')
     });
-  }, []);
+  }, [ingredientQuery]);
 
   return {
     errorQuery,

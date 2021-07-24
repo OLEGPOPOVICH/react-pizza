@@ -1,6 +1,5 @@
-import { Ingredients } from "./Ingredients";
+import { Ingredients } from "./Ingredients/Ingredients";
 import { useIngredietsQuery } from "./ingredientsQuery";
-import "./styles.css";
 
 export const IngredientsPage = () => {
   const { isLoading, errorQuery, ingredients, updateIngredient } = useIngredietsQuery();

@@ -7,7 +7,6 @@ export const IngredientEditForm = ({
   id
 }) => {
   const { register, handleSubmit } = useForm()
-
   const onSubmit = (data) => {
     onClickSave({id: ingredient.id, ...data})
   }

@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
-import { useIngredietQuery } from "./ingredientQuery"
-import { Ingredient } from "./Ingredient/Ingredient";
-import { Portal } from "../../component/Portal/Portal";
-import { Modal } from "../../component/Modal/Modal";
-import { IngredientEditForm } from "./IngredientEditForm/IngredientEditForm";
+import { useIngredietQuery } from "../ingredientQuery"
+import { Ingredient } from "../Ingredient/Ingredient";
+import { Portal } from "../../../component/Portal/Portal";
+import { Modal } from "../../../component/Modal/Modal";
+import { IngredientEditForm } from "../IngredientEditForm/IngredientEditForm";
+import "./styles.css";
 
 export const Ingredients = ({
   ingredients,
@@ -15,14 +16,14 @@ export const Ingredients = ({
 
   const handleCloseErrorModal = useCallback(() => {
     removeErrorQuery();
-  }, []);
+  }, [removeErrorQuery]);
 
   const handleRemoveClick = useCallback((ingredient) => {
     const ok = window.confirm(`Вы точно хотите удалить ${ingredient.category} ${ingredient.value}?`);
     if (ok) {
       removeIngredientQuery(ingredient.id)
     }
-  }, []);
+  }, [removeIngredientQuery]);
 
   const handleEditClick = useCallback((ingredient) => {
     setIngredientEdit(ingredient);
@@ -49,7 +50,7 @@ export const Ingredients = ({
 
     updateIngredientQuery(formData);
     setIsEdit(false);
-  }, []);
+  }, [updateIngredientQuery]);
 
   return (
     <>
