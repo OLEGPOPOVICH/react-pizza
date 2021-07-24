@@ -6,16 +6,16 @@ export const Modal = ({
   children,
   action,
   options,
-  btnNameClose,
-  actionClose
+  closeButtonLabel,
+  onClose
 }) => {
   const listItemStyle = {
     'maxWidth': options && options.width ? options.width : '400px'
   };
 
   const handleCloseClick = () => {
-    if (actionClose) {
-      actionClose()
+    if (onClose) {
+      onClose()
     }
   }
 
@@ -45,9 +45,9 @@ export const Modal = ({
           <button
             type="button"
             onClick={handleCloseClick}
-          >{btnNameClose || "Закрыть"}</button>
+          >{closeButtonLabel || "Закрыть"}</button>
         </div>
       </div>
     </div>
   )
-}
+};
