@@ -15,3 +15,5 @@ export const updateIngredient = (id, ingredient) => {
       return response.data;
     });
 };
+
+export const createIngredient = (ingredient) => api.post(`/ingredients`, ingredient);
