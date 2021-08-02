@@ -41,9 +41,7 @@ export const CreateIngredientPage = () => {
         showModal={error.isError}
         title="Ошибка"
         onClose={handleErrorModalClose}
-      >
-        {error.message}
-      </Modal>
+      >{error.message}</Modal>
     </>
   );
 };

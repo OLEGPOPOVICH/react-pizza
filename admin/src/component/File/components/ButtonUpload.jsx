@@ -7,7 +7,7 @@ export const ButtonUpload = forwardRef(({
   <input
     ref={ref}
     type="file"
-    name={name || "image"}
+    name={name || "file"}
     onChange={onChange}
   />
 ));
