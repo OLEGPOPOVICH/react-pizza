@@ -3,11 +3,13 @@ import "./styles.css";
 export const Modal = ({
   showModal,
   title,
+  isTitle = true,
   children,
   action,
   options,
   closeButtonLabel,
-  onClose
+  onClose,
+  afterClose
 }) => {
   const listItemStyle = {
     'maxWidth': options && options.width ? options.width : '400px'
@@ -16,6 +18,13 @@ export const Modal = ({
   const handleCloseClick = () => {
     if (onClose) {
       onClose()
+    }
+
+    if (
+      afterClose
+      && typeof afterClose === "function"
+    ) {
+      afterClose();
     }
   }
 
@@ -26,9 +35,11 @@ export const Modal = ({
   return (
     <div className="modal modal-overlay">
       <div className="modal__container" style={listItemStyle}>
-        <div className="modal__header">
-          {title || "Заголовок окна"}
-        </div>
+        {isTitle && (
+          <div className="modal__header">
+            {title || "Заголовок окна"}
+          </div>
+        )}
         <div className="modal__body">
           {children}
         </div>
