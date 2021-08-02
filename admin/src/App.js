@@ -1,4 +1,5 @@
 import { NavLink, Route, Switch } from "react-router-dom";
+import { CreateIngredientPage } from "./pages/CreateIngredientPage/CreateIngredientPage";
 import { IngredientsPage } from "./pages/IngredientsPage/IngredientsPage";
 
 export const App = () => (
@@ -15,7 +16,7 @@ export const App = () => (
       <div className="container">
         <Switch>
           <Route path="/create-topping">
-            <div>Создать топпинг</div>
+            <CreateIngredientPage />
           </Route>
           <Route exact path="/">
             <IngredientsPage />
